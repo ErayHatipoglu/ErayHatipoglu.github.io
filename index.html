@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eray Hatipoğlu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+    :root{
+      --sand:#f8f7f4;
+      --white:#ffffff;
+      --ink:#171614;
+      --mid:#90908a;
+      --line:rgba(23,22,20,0.09);
+      --blue:#2563eb;
+      --bluelt:#dbeafe;
+    }
+
+    html{scroll-behavior:smooth}
+    body{
+      font-family:'Plus Jakarta Sans',sans-serif;color:var(--ink);overflow-x:hidden;
+      background:url('https://images.unsplash.com/photo-1680820364850-0064a0ae6d16?auto=format&fit=crop&w=3000&q=100') center/cover fixed;
+    }
+
+    /* ── NAV ── */
+    nav{
+      position:fixed;top:0;left:0;right:0;z-index:300;
+      height:60px;display:flex;align-items:center;justify-content:space-between;
+      padding:0 3.5rem;
+      background:rgba(248,247,244,0.96);backdrop-filter:blur(16px);
+      border-bottom:1px solid var(--line);
+    }
+    .logo{font-size:1.1rem;font-weight:800;letter-spacing:-0.02em;color:var(--ink);text-decoration:none}
+    .logo span{color:var(--blue)}
+    .nav-links{list-style:none;display:flex;gap:2rem}
+    .nav-links a{font-size:0.78rem;font-weight:500;letter-spacing:0.04em;color:var(--ink);text-decoration:none;opacity:.4;transition:opacity .2s}
+    .nav-links a:hover{opacity:1}
+
+
+    /* ── HERO ── */
+    #hero{
+      min-height:100vh;position:relative;
+      display:flex;flex-direction:column;justify-content:center;align-items:flex-start;
+      padding:0 3.5rem;
+      background:url('https://images.unsplash.com/photo-1680820364850-0064a0ae6d16?auto=format&fit=crop&w=3000&q=100') center/cover no-repeat fixed;
+    }
+    #hero::before{
+      content:'';position:absolute;inset:0;
+      background:linear-gradient(135deg,rgba(8,6,4,.78) 0%,rgba(8,6,4,.45) 55%,rgba(8,6,4,.2) 100%)
+    }
+    .hero-inner{position:relative;z-index:2;color:#fff;max-width:900px}
+    .hero-hello{
+      font-size:.82rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
+      opacity:.55;margin-bottom:1.4rem;display:flex;align-items:center;gap:.7rem
+    }
+    .hero-hello::before{content:'';width:28px;height:1.5px;background:var(--blue);display:block}
+
+    /* BIG typewriter */
+    .hero-name{
+      font-size:clamp(2.8rem,7vw,5.5rem);
+      font-weight:800;line-height:1.08;letter-spacing:-.03em;
+      margin-bottom:.6rem
+    }
+    .hero-tw-block{
+      font-size:clamp(2.4rem,6vw,5rem);
+      font-weight:700;line-height:1.1;letter-spacing:-.03em;
+      margin-bottom:2rem;min-height:1.2em;
+      display:flex;align-items:center
+    }
+    #tw{padding-right:5px;transition:color .3s}
+    #tw.c0{color:#4f6ef7;border-right:3px solid #4f6ef7}
+    #tw.c1{color:#22c55e;border-right:3px solid #22c55e}
+    #tw.c2{color:#f43f5e;border-right:3px solid #f43f5e}
+    #tw.c3{color:#a855f7;border-right:3px solid #a855f7}
+    #tw.c4{color:#fb923c;border-right:3px solid #fb923c}
+    #tw.c5{color:#4f6ef7;border-right:3px solid #4f6ef7}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+    .hero-desc{font-size:1rem;font-weight:300;opacity:.65;line-height:1.8;max-width:50ch;margin-bottom:2.4rem}
+    .hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+    .btn-prim{
+      display:inline-block;padding:.82em 2em;background:var(--blue);color:#fff;
+      font-size:.8rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+      text-decoration:none;border-radius:6px;transition:background .2s
+    }
+    .btn-prim:hover{background:#1d4ed8}
+    .btn-sec{
+      display:inline-block;padding:.82em 2em;
+      border:1.5px solid rgba(255,255,255,.35);color:#fff;
+      font-size:.8rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+      text-decoration:none;border-radius:6px;transition:all .2s
+    }
+    .btn-sec:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.7)}
+
+    /* ── SLIDER ── */
+    #slider-wrap{position:relative;overflow:hidden;background:#0c0b09}
+    .slider-track{display:flex;width:500%;transition:transform .5s cubic-bezier(.65,0,.35,1)}
+    .slide{
+      width:100%;height:46rem;
+      display:grid;grid-template-columns:1.1fr .9fr;
+      align-items:center;position:relative;overflow:hidden
+    }
+    .slide-bg{position:absolute;inset:0}
+    .slide-skew{
+      position:absolute;inset:0;width:62%;left:-6%;
+      transform:skewX(5deg);transform-origin:bottom left;
+      background:rgba(0,0,0,.26)
+    }
+    .slide-skew::after{content:'';position:absolute;inset:0;background:inherit;transform:skewX(7deg)}
+    .slide-content{position:relative;z-index:2;padding:0 3rem 0 5rem;color:#fff}
+    .slide-num{font-size:5rem;font-weight:800;opacity:.05;line-height:1;margin-bottom:-.4rem;letter-spacing:-.04em}
+    .slide-tag{font-size:.65rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;opacity:.45;margin-bottom:.7rem}
+    .slide-title{font-size:2.4rem;font-weight:800;line-height:1.1;letter-spacing:-.02em;margin-bottom:1rem}
+    .slide-desc{font-size:.86rem;line-height:1.8;opacity:.55;max-width:38ch;margin-bottom:1.8rem}
+    .slide-cta{
+      display:inline-block;padding:.65em 1.8em;
+      font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+      text-decoration:none;color:#fff;border:1.5px solid rgba(255,255,255,.3);
+      border-radius:4px;transition:all .25s
+    }
+    .slide-cta:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.7)}
+    .slide-vis{position:relative;z-index:2;display:flex;align-items:center;justify-content:center}
+    .slide-shape{
+      width:13rem;height:18rem;border-radius:2.5rem;
+      transform:rotate(-6deg) skewX(-4deg);position:relative
+    }
+    .slide-shape::before,.slide-shape::after{content:'';position:absolute;inset:0;border-radius:2.5rem}
+    .slide-shape::before{transform:translate(1.2rem,-1.8rem);opacity:.25}
+    .slide-shape::after{transform:translate(2.4rem,-.8rem);opacity:.15}
+
+    .s0 .slide-bg{background:#080d1a}.s0 .slide-shape,.s0 .slide-shape::before,.s0 .slide-shape::after{background:#4f6ef7}
+    .s1 .slide-bg{background:#06120d}.s1 .slide-shape,.s1 .slide-shape::before,.s1 .slide-shape::after{background:#22c55e}
+    .s2 .slide-bg{background:#130607}.s2 .slide-shape,.s2 .slide-shape::before,.s2 .slide-shape::after{background:#f43f5e}
+    .s3 .slide-bg{background:#0e0814}.s3 .slide-shape,.s3 .slide-shape::before,.s3 .slide-shape::after{background:#a855f7}
+    .s4 .slide-bg{background:#140c04}.s4 .slide-shape,.s4 .slide-shape::before,.s4 .slide-shape::after{background:#fb923c}
+
+    .s-prev,.s-next{
+      position:absolute;top:50%;transform:translateY(-50%);z-index:10;
+      width:3rem;height:3rem;cursor:pointer;
+      background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);
+      color:#fff;font-size:1rem;display:flex;align-items:center;justify-content:center;
+      transition:background .2s;border-radius:4px
+    }
+    .s-prev{left:1.5rem}.s-next{right:1.5rem}
+    .s-prev:hover,.s-next:hover{background:rgba(255,255,255,.16)}
+    .s-dots{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;gap:.6rem;z-index:10}
+    .s-dot{height:3px;width:2rem;background:rgba(255,255,255,.2);cursor:pointer;transition:all .3s;border-radius:2px}
+    .s-dot.on{background:#fff;width:3.2rem}
+
+    /* ── SECTION COMMON ── */
+    .sec-label{
+      font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+      color:var(--blue);margin-bottom:1rem;
+      display:flex;align-items:center;gap:.6rem
+    }
+    .sec-label::after{content:'';flex:1;height:1.5px;background:var(--blue);opacity:.18}
+    h2.sec-h{font-size:2.6rem;font-weight:800;line-height:1.1;letter-spacing:-.025em;margin-bottom:1.8rem}
+    h2.sec-h-light{font-size:2.6rem;font-weight:800;line-height:1.1;letter-spacing:-.025em;color:#fff;margin-bottom:2.8rem}
+
+    /* ── ABOUT ── */
+    #about{background:var(--white);padding:7rem 3.5rem;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start}
+    .about-p{font-size:.92rem;line-height:1.9;color:#58564f;margin-bottom:1.1rem}
+    .ilist{display:flex;flex-direction:column;padding-top:.5rem}
+    .irow{display:flex;align-items:baseline;gap:1rem;padding:.85rem 0;border-bottom:1px solid var(--line)}
+    .ik{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);min-width:82px}
+    .iv{font-size:.88rem;font-weight:400}
+    .iv a{color:var(--ink);text-decoration:none;transition:color .2s}
+    .iv a:hover{color:var(--blue)}
+
+    /* ── SKILLS ── */
+    #skills{
+      background:url('https://images.unsplash.com/photo-1680820364850-0064a0ae6d16?auto=format&fit=crop&w=3000&q=100') center/cover no-repeat fixed;
+      padding:7rem 3.5rem;position:relative
+    }
+    #skills::before{content:'';position:absolute;inset:0;background:rgba(5,4,3,.78)}
+    .skills-in{position:relative;z-index:1}
+    .skills-in .sec-label{color:#60a5fa}
+    .skills-in .sec-label::after{background:#60a5fa}
+    .sg-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem}
+    .sg h4{font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#60a5fa;margin-bottom:1.2rem;padding-bottom:.6rem;border-bottom:1px solid rgba(96,165,250,.2)}
+    .sg ul{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+    .sg li{font-size:.84rem;color:rgba(255,255,255,.55);display:flex;align-items:center;gap:.6rem}
+    .sg li::before{content:'';width:4px;height:4px;border-radius:50%;background:#60a5fa;flex-shrink:0}
+
+    /* ── PROJECTS ── */
+    #projects{background:var(--sand);padding:7rem 3.5rem}
+    .ph{margin-bottom:3rem}
+    .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;background:var(--line);border:1.5px solid var(--line)}
+    .pc{background:var(--white);padding:2.2rem;transition:background .3s}
+    .pc:hover{background:var(--ink)}
+    .pn{font-size:3rem;font-weight:800;color:rgba(0,0,0,.04);line-height:1;margin-bottom:1rem;letter-spacing:-.04em;transition:color .3s}
+    .pc:hover .pn{color:rgba(255,255,255,.05)}
+    .pt{font-size:.9rem;font-weight:700;margin-bottom:.6rem;transition:color .3s}
+    .pc:hover .pt{color:#fff}
+    .pd{font-size:.8rem;line-height:1.75;color:var(--mid);transition:color .3s}
+    .pc:hover .pd{color:rgba(255,255,255,.45)}
+    .ptags{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:1.2rem}
+    .ptg{font-size:.6rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.22em .65em;border:1px solid var(--line);color:var(--mid);transition:all .3s;border-radius:3px}
+    .pc:hover .ptg{border-color:rgba(255,255,255,.14);color:rgba(255,255,255,.35)}
+
+    /* ── EDUCATION ── */
+    #education{background:var(--white);padding:7rem 3.5rem;display:grid;grid-template-columns:1fr 1.5fr;gap:6rem}
+    .edu-list{display:flex;flex-direction:column}
+    .edu-row{display:grid;grid-template-columns:52px 1fr;gap:1.8rem;padding:2rem 0;border-bottom:1px solid var(--line);align-items:start}
+    .edu-yr{font-size:.76rem;font-weight:700;color:var(--blue);writing-mode:vertical-lr;letter-spacing:.06em;margin-top:3px}
+    .edu-school{font-size:1rem;font-weight:700;margin-bottom:.2rem}
+    .edu-field{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:.55rem}
+    .edu-desc{font-size:.82rem;color:var(--mid);line-height:1.7}
+
+    /* ── INTERESTS ── */
+    #interests{background:rgba(23,22,20,0.72);backdrop-filter:blur(10px);padding:5rem 3.5rem;display:flex;flex-direction:column;align-items:center;text-align:center}
+    .int-label{font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#60a5fa;margin-bottom:.8rem}
+    h2.int-title{font-size:2.4rem;font-weight:800;letter-spacing:-.025em;color:#fff;margin-bottom:2.5rem}
+    .itags{display:flex;flex-wrap:wrap;justify-content:center;gap:.55rem;max-width:680px}
+    .itag{font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.5em 1.1em;border:1px solid rgba(96,165,250,.25);color:rgba(255,255,255,.48);transition:all .2s;cursor:default;border-radius:4px}
+    .itag:hover{border-color:#60a5fa;color:#60a5fa}
+
+    /* ── FOOTER (contact + map) ── */
+    #footer-block{background:var(--white)}
+
+    /* contact strip */
+    .footer-contact{
+      display:grid;grid-template-columns:1fr 1fr;gap:0;
+      border-top:1px solid var(--line)
+    }
+    .fc-form{padding:4.5rem 3.5rem;border-right:1px solid var(--line)}
+    .fc-form h3{font-size:1.8rem;font-weight:800;letter-spacing:-.025em;margin-bottom:.4rem}
+    .fc-form>p{font-size:.88rem;color:var(--mid);margin-bottom:2.2rem;line-height:1.7}
+    .form-row{display:flex;flex-direction:column;gap:.45rem;margin-bottom:1.1rem}
+    .form-row label{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--mid)}
+    .form-row input,.form-row textarea{
+      width:100%;padding:.85em 1.1em;
+      border:1.5px solid rgba(23,22,20,.1);
+      background:rgba(248,247,244,.7);
+      font-family:inherit;font-size:.9rem;color:var(--ink);
+      border-radius:10px;outline:none;transition:border-color .2s,background .2s,box-shadow .2s;resize:none
+    }
+    .form-row input:focus,.form-row textarea:focus{
+      border-color:var(--blue);background:#fff;
+      box-shadow:0 0 0 4px rgba(37,99,235,.08)
+    }
+    .form-row textarea{height:120px}
+    .form-submit{
+      width:100%;padding:1em 1.4em;margin-top:.8rem;
+      background:linear-gradient(135deg,#25d366 0%,#128c7e 100%);
+      color:#fff;font-family:inherit;font-size:.85rem;font-weight:700;
+      letter-spacing:.06em;text-transform:uppercase;
+      border:none;border-radius:10px;cursor:pointer;
+      display:flex;align-items:center;justify-content:center;gap:.6rem;
+      box-shadow:0 4px 18px rgba(37,211,102,.3);
+      transition:transform .15s,box-shadow .15s
+    }
+    .form-submit:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(37,211,102,.45)}
+    .form-submit:active{transform:translateY(0)}
+    .wa-note{font-size:.72rem;color:var(--mid);text-align:center;margin-top:.6rem;line-height:1.5}
+
+    .fc-info{padding:4.5rem 3.5rem;display:flex;flex-direction:column;gap:2rem}
+    .fc-info h3{font-size:1.6rem;font-weight:800;letter-spacing:-.02em;margin-bottom:.2rem}
+    .fc-info p{font-size:.88rem;color:var(--mid);line-height:1.7;margin-bottom:1.5rem}
+    .ci-item{display:flex;align-items:flex-start;gap:1rem}
+    .ci-icon{
+      width:40px;height:40px;border-radius:8px;background:var(--bluelt);
+      display:flex;align-items:center;justify-content:center;flex-shrink:0;
+      font-size:1.1rem
+    }
+    .ci-label{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);margin-bottom:.2rem}
+    .ci-val{font-size:.88rem;font-weight:500}
+    .ci-val a{color:var(--ink);text-decoration:none;transition:color .2s}
+    .ci-val a:hover{color:var(--blue)}
+
+    /* social row */
+    .social-row{display:flex;gap:.6rem;margin-top:.5rem}
+    .social-pill{
+      display:inline-flex;align-items:center;gap:.4rem;
+      padding:.45em 1em;border-radius:20px;
+      background:var(--sand);border:1px solid var(--line);
+      font-size:.7rem;font-weight:600;color:var(--ink);text-decoration:none;
+      transition:all .2s
+    }
+    .social-pill:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
+
+    /* map */
+    #map-section{position:relative}
+    #map-section iframe{display:block;width:100%;height:400px;border:0;filter:saturate(.75)}
+
+    /* footer bar */
+    .footer-bar{
+      background:var(--ink);color:rgba(255,255,255,.3);
+      padding:1.4rem 3.5rem;display:flex;justify-content:space-between;align-items:center;
+      font-size:.7rem;letter-spacing:.06em
+    }
+    .footer-bar a{color:rgba(255,255,255,.4);text-decoration:none}
+    .footer-bar a:hover{color:#fff}
+
+    @media(max-width:900px){
+      nav{padding:0 1.5rem}.nav-links,.nav-cta{display:none}
+      #hero{padding:0 1.5rem}
+      #about,#education,.footer-contact{grid-template-columns:1fr;gap:0}
+      .fc-form,.fc-info{padding:3rem 1.5rem}
+      .fc-form{border-right:none;border-bottom:1px solid var(--line)}
+      #skills,#projects,#interests,#contact{padding:4.5rem 1.5rem}
+      .sg-grid,.pgrid{grid-template-columns:1fr}
+      .slide{grid-template-columns:1fr}
+      .slide-vis{display:none}
+      .slide-content{padding:3rem 2rem}
+      .footer-bar{padding:1.2rem 1.5rem;flex-direction:column;gap:.3rem;text-align:center}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="logo">Eray<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">Hakkımda</a></li>
+    <li><a href="#skills">Yetenekler</a></li>
+    <li><a href="#projects">Projeler</a></li>
+    <li><a href="#education">Eğitim</a></li>
+    <li><a href="#footer-block">İletişim</a></li>
+  </ul>
+
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <p class="hero-hello">Developer & Engineer — İstanbul, TR</p>
+    <h1 class="hero-name">Eray Hatipoğlu</h1>
+    <div class="hero-tw-block"><span id="tw"></span></div>
+    <p class="hero-desc">Robotik sistemler, yapay zeka destekli otomasyon, gömülü yazılım ve full stack geliştirme alanlarında çok disiplinli bir mühendis.</p>
+    <div class="hero-btns">
+      <a href="#about" class="btn-prim">Hakkımda</a>
+      <a href="#footer-block" class="btn-sec">İletişime Geç</a>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDER -->
+<div id="slider-wrap">
+  <div class="slider-track" id="sliderTrack">
+    <div class="slide s0">
+      <div class="slide-bg"></div><div class="slide-skew"></div>
+      <div class="slide-content">
+        <div class="slide-num">01</div>
+        <p class="slide-tag">Proje — AI</p>
+        <h2 class="slide-title">Sosyal Medya<br>Otomasyon Sistemi</h2>
+        <p class="slide-desc">Python ve lokal AI modelleri ile içerik üretimi, iş akışı yönetimi ve otomatik medya işleme altyapısı.</p>
+        <a href="#projects" class="slide-cta">İncele →</a>
+      </div>
+      <div class="slide-vis"><div class="slide-shape"></div></div>
+    </div>
+    <div class="slide s1">
+      <div class="slide-bg"></div><div class="slide-skew"></div>
+      <div class="slide-content">
+        <div class="slide-num">02</div>
+        <p class="slide-tag">Proje — Computer Vision</p>
+        <h2 class="slide-title">Bilgisayarlı Görü<br>& OpenCV</h2>
+        <p class="slide-desc">Gerçek zamanlı görüntü işleme, nesne tespiti ve kamera tabanlı otomasyon sistemleri geliştirme.</p>
+        <a href="#projects" class="slide-cta">İncele →</a>
+      </div>
+      <div class="slide-vis"><div class="slide-shape"></div></div>
+    </div>
+    <div class="slide s2">
+      <div class="slide-bg"></div><div class="slide-skew"></div>
+      <div class="slide-content">
+        <div class="slide-num">03</div>
+        <p class="slide-tag">Proje — .NET</p>
+        <h2 class="slide-title">Windows & .NET<br>Uygulamaları</h2>
+        <p class="slide-desc">ASP.NET, .NET Framework ve C# ile masaüstü uygulamaları ve kapsamlı otomasyon araçları.</p>
+        <a href="#projects" class="slide-cta">İncele →</a>
+      </div>
+      <div class="slide-vis"><div class="slide-shape"></div></div>
+    </div>
+    <div class="slide s3">
+      <div class="slide-bg"></div><div class="slide-skew"></div>
+      <div class="slide-content">
+        <div class="slide-num">04</div>
+        <p class="slide-tag">Proje — Mobile</p>
+        <h2 class="slide-title">Flutter Mobil<br>Uygulama</h2>
+        <p class="slide-desc">Dart ve Flutter ile çapraz platform modern mobil uygulamalar ve performanslı UI/UX geliştirme.</p>
+        <a href="#projects" class="slide-cta">İncele →</a>
+      </div>
+      <div class="slide-vis"><div class="slide-shape"></div></div>
+    </div>
+    <div class="slide s4">
+      <div class="slide-bg"></div><div class="slide-skew"></div>
+      <div class="slide-content">
+        <div class="slide-num">05</div>
+        <p class="slide-tag">Proje — Embedded</p>
+        <h2 class="slide-title">Raspberry Pi &<br>Arduino Sistemleri</h2>
+        <p class="slide-desc">Sensör entegrasyonu, motor sürücü sistemleri ve gerçek zamanlı gömülü Linux geliştirme.</p>
+        <a href="#projects" class="slide-cta">İncele →</a>
+      </div>
+      <div class="slide-vis"><div class="slide-shape"></div></div>
+    </div>
+  </div>
+  <button class="s-prev" id="sPrev">&#8592;</button>
+  <button class="s-next" id="sNext">&#8594;</button>
+  <div class="s-dots" id="sDots">
+    <div class="s-dot on" data-i="0"></div>
+    <div class="s-dot" data-i="1"></div>
+    <div class="s-dot" data-i="2"></div>
+    <div class="s-dot" data-i="3"></div>
+    <div class="s-dot" data-i="4"></div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div>
+    <p class="sec-label">Hakkımda</p>
+    <h2 class="sec-h">Yazılım,<br>Donanım &<br>Yapay Zeka.</h2>
+    <p class="about-p">Raspberry Pi, Arduino ve Linux tabanlı sistemlerde ileri düzey teknik deneyime sahip çok yönlü bir geliştiriciyim. Python ile AI destekli içerik üretim altyapıları ve görüntü işleme uygulamaları geliştiriyorum.</p>
+    <p class="about-p">Full stack web, masaüstü, mobil ve gerçek zamanlı sistemlerde aktif projeler üretiyorum. Farklı disiplinlerde kısa sürede üretken hale gelebiliyorum.</p>
+  </div>
+  <div class="ilist">
+    <div class="irow"><span class="ik">Doğum</span><span class="iv">27.07.2007</span></div>
+    <div class="irow"><span class="ik">Konum</span><span class="iv">İstanbul, Türkiye</span></div>
+    <div class="irow"><span class="ik">Telefon</span><span class="iv">0555 061 24 09</span></div>
+    <div class="irow"><span class="ik">E-posta</span><span class="iv"><a href="mailto:erayhatipoglu98@gmail.com">erayhatipoglu98@gmail.com</a></span></div>
+    <div class="irow"><span class="ik">LinkedIn</span><span class="iv"><a href="https://linkedin.com/in/eray-hatipoğlu-8ba690410" target="_blank">linkedin.com/in/eray-hatipoğlu</a></span></div>
+    <div class="irow"><span class="ik">GitHub</span><span class="iv"><a href="https://github.com/ErayHatipoglu" target="_blank">github.com/ErayHatipoglu</a></span></div>
+    <div class="irow"><span class="ik">Dil</span><span class="iv">İngilizce — B2</span></div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="skills-in">
+    <p class="sec-label">Teknik Yetenekler</p>
+    <h2 class="sec-h-light">Teknoloji Yığını</h2>
+    <div class="sg-grid">
+      <div class="sg"><h4>Programlama</h4><ul>
+        <li>Python — İleri</li><li>C / C++ — İleri</li>
+        <li>C# — İleri</li><li>Dart — İleri</li>
+        <li>Java — İleri</li><li>HTML5 / CSS3 — İleri</li>
+      </ul></div>
+      <div class="sg"><h4>Framework & AI</h4><ul>
+        <li>OpenCV</li><li>Flutter</li>
+        <li>ASP.NET / MVC</li><li>.NET Framework</li>
+        <li>AI Automation</li><li>Local AI Inference</li>
+      </ul></div>
+      <div class="sg"><h4>Robotik & Gömülü</h4><ul>
+        <li>Raspberry Pi</li><li>Arduino</li>
+        <li>Motor Driver Systems</li><li>Sensor Integration</li>
+        <li>Embedded Linux</li><li>Real-Time Control</li>
+      </ul></div>
+      <div class="sg"><h4>Güvenlik & Diğer</h4><ul>
+        <li>OSINT Tools</li><li>Reverse Engineering</li>
+        <li>Web Automation</li><li>Linux Ecosystem</li>
+        <li>REST API</li><li>Unity</li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="ph">
+    <p class="sec-label">Projeler</p>
+    <h2 class="sec-h">Öne Çıkan Çalışmalar</h2>
+  </div>
+  <div class="pgrid">
+    <div class="pc"><div class="pn">01</div><div class="pt">AI Sosyal Medya Otomasyonu</div><p class="pd">Python ve lokal AI modelleri ile içerik üretimi ve iş akışı yönetimi. Otomatik medya işleme.</p><div class="ptags"><span class="ptg">Python</span><span class="ptg">Local AI</span><span class="ptg">Automation</span></div></div>
+    <div class="pc"><div class="pn">02</div><div class="pt">Bilgisayarlı Görü & OpenCV</div><p class="pd">Gerçek zamanlı görüntü işleme ve otomasyon. Kamera tabanlı sistem geliştirme.</p><div class="ptags"><span class="ptg">Python</span><span class="ptg">OpenCV</span><span class="ptg">CV</span></div></div>
+    <div class="pc"><div class="pn">03</div><div class="pt">Windows & .NET Uygulamaları</div><p class="pd">ASP.NET, .NET Framework ve C# ile masaüstü uygulama ve otomasyon araçları.</p><div class="ptags"><span class="ptg">C#</span><span class="ptg">ASP.NET</span><span class="ptg">.NET</span></div></div>
+    <div class="pc"><div class="pn">04</div><div class="pt">Full Stack Web Projeleri</div><p class="pd">Modern arayüzlere sahip yüksek performanslı web siteleri. Uçtan uca geliştirme.</p><div class="ptags"><span class="ptg">ASP.NET MVC</span><span class="ptg">HTML/CSS</span><span class="ptg">JS</span></div></div>
+    <div class="pc"><div class="pn">05</div><div class="pt">Flutter Mobil Uygulama</div><p class="pd">Dart ve Flutter ile cross-platform modern mobil uygulamalar ve UI/UX geliştirme.</p><div class="ptags"><span class="ptg">Flutter</span><span class="ptg">Dart</span><span class="ptg">Mobile</span></div></div>
+    <div class="pc"><div class="pn">06</div><div class="pt">Raspberry Pi & Arduino</div><p class="pd">Sensör entegrasyonu, donanım kontrolü ve gerçek zamanlı sistem geliştirme.</p><div class="ptags"><span class="ptg">Raspberry Pi</span><span class="ptg">Arduino</span><span class="ptg">Embedded</span></div></div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div>
+    <p class="sec-label">Eğitim</p>
+    <h2 class="sec-h">Akademik<br>Geçmiş</h2>
+  </div>
+  <div class="edu-list">
+    <div class="edu-row">
+      <span class="edu-yr">2025→</span>
+      <div>
+        <div class="edu-school">Doğuş Üniversitesi</div>
+        <div class="edu-field">Bilişim Güvenliği Teknolojisi</div>
+        <div class="edu-desc">2 yıllık ön lisans programı. Siber güvenlik ve bilişim sistemleri odaklı eğitim.</div>
+      </div>
+    </div>
+    <div class="edu-row">
+      <span class="edu-yr">Mezun</span>
+      <div>
+        <div class="edu-school">Handan Hayrettin Yelkikanat MTAL</div>
+        <div class="edu-field">Bilişim Teknolojileri — Teknik Lise</div>
+        <div class="edu-desc">Mesleki teknik eğitim. Yazılım ve donanım temelli altyapı kazanımı.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERESTS -->
+<section id="interests">
+  <p class="int-label">İlgi Alanları</p>
+  <h2 class="int-title">Tutkular & Odak Noktaları</h2>
+  <div class="itags">
+    <span class="itag">Yapay Zeka</span><span class="itag">Robotik</span>
+    <span class="itag">Siber Güvenlik</span><span class="itag">OSINT</span>
+    <span class="itag">Linux</span><span class="itag">Reverse Engineering</span>
+    <span class="itag">Embedded Systems</span><span class="itag">Bilgisayarlı Görü</span>
+    <span class="itag">Otomasyon</span><span class="itag">Donanım Geliştirme</span>
+  </div>
+</section>
+
+<!-- FOOTER: CONTACT + MAP -->
+<div id="footer-block">
+
+  <!-- Contact strip -->
+  <div class="footer-contact">
+
+    <!-- Form -->
+    <div class="fc-form">
+      <h3>Mesaj Gönder</h3>
+      <p>Proje fikrinizi, iş birliği teklifinizi veya sorularınızı buradan iletebilirsiniz.</p>
+      <div class="form-row">
+        <label>Ad Soyad</label>
+        <input id="waName" type="text" placeholder="Adınız Soyadınız">
+      </div>
+      <div class="form-row">
+        <label>E-posta</label>
+        <input id="waEmail" type="email" placeholder="ornek@mail.com">
+      </div>
+      <div class="form-row">
+        <label>Mesaj</label>
+        <textarea id="waMsg" placeholder="Projenizi veya sorunuzu kısaca anlatın..."></textarea>
+      </div>
+      <button class="form-submit" id="waBtn">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp ile Gönder
+      </button>
+      <p class="wa-note">Butona tıklanınca WhatsApp açılır, mesajınız hazır gelir.</p>
+    </div>
+
+    <!-- Info -->
+    <div class="fc-info">
+      <div>
+        <h3>İletişime Geç</h3>
+        <p>Yeni projeler, iş birlikleri veya teknik sorularınız için ulaşabilirsiniz.</p>
+      </div>
+      <div class="ci-item">
+        <div class="ci-icon">📍</div>
+        <div>
+          <div class="ci-label">Konum</div>
+          <div class="ci-val">İstanbul, Türkiye</div>
+        </div>
+      </div>
+      <div class="ci-item">
+        <div class="ci-icon">📞</div>
+        <div>
+          <div class="ci-label">Telefon</div>
+          <div class="ci-val"><a href="tel:+905550612409">0555 061 24 09</a></div>
+        </div>
+      </div>
+      <div class="ci-item">
+        <div class="ci-icon">✉️</div>
+        <div>
+          <div class="ci-label">E-posta</div>
+          <div class="ci-val"><a href="mailto:erayhatipoglu98@gmail.com">erayhatipoglu98@gmail.com</a></div>
+        </div>
+      </div>
+      <div>
+        <div class="ci-label" style="margin-bottom:.8rem">Sosyal Medya</div>
+        <div class="social-row">
+          <a href="https://github.com/ErayHatipoglu" target="_blank" class="social-pill">🐙 GitHub</a>
+          <a href="https://linkedin.com/in/eray-hatipoğlu-8ba690410" target="_blank" class="social-pill">💼 LinkedIn</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Map -->
+  <div id="map-section">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d192697.74115498895!2d28.872396!3d41.0050948!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14caa7040068086b%3A0xe1ccfe98bc01b0d0!2zSXN0YW5idWwsIFTDvHJraXll!5e0!3m2!1str!2str!4v1700000000000"
+      allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+
+  <!-- Footer bar -->
+  <div class="footer-bar">
+    <span>© 2025 Eray Hatipoğlu — Tüm hakları saklıdır.</span>
+    <span><a href="mailto:erayhatipoglu98@gmail.com">erayhatipoglu98@gmail.com</a></span>
+  </div>
+
+</div>
+
+<script>
+  // Typewriter — her rolle farklı renk
+  const roles=["Robotics Developer","AI Automation Engineer","Embedded Systems Developer","Full Stack Developer","Computer Vision Developer","Cyber Security Researcher"];
+  const colors=["c0","c1","c2","c3","c4","c0","c1"];
+  let ri=0,ci=0,del=false;
+  const tw=document.getElementById('tw');
+  function applyColor(){tw.className=colors[ri%colors.length];}
+  applyColor();
+  function type(){
+    const cur=roles[ri];
+    tw.textContent=del?cur.slice(0,ci--):cur.slice(0,ci++);
+    let d=del?42:80;
+    if(!del&&ci===cur.length+1){d=1800;del=true;}
+    else if(del&&ci===0){del=false;ri=(ri+1)%roles.length;applyColor();d=350;}
+    setTimeout(type,d);
+  }
+  type();
+
+  // WhatsApp form — ad + mail + mesaj
+  document.getElementById('waBtn').addEventListener('click',function(){
+    const name  = document.getElementById('waName').value.trim();
+    const email = document.getElementById('waEmail').value.trim();
+    const msg   = document.getElementById('waMsg').value.trim();
+    if(!name && !msg){ alert('Lütfen en az adınızı veya mesajınızı yazın.'); return; }
+    const phone = '905550612409';
+    let text = '';
+    if(name)  text += '*Ad:* ' + name + '\n';
+    if(email) text += '*E-posta:* ' + email + '\n';
+    if(text)  text += '\n';
+    if(msg)   text += '*Mesaj:* ' + msg;
+    window.open('https://wa.me/' + phone + '?text=' + encodeURIComponent(text.trim()), '_blank');
+  });
+
+  // Slider
+  const track=document.getElementById('sliderTrack');
+  const dots=document.querySelectorAll('.s-dot');
+  let idx=0,N=5,tim;
+  const go=n=>{idx=(n+N)%N;track.style.transform=`translateX(-${idx*20}%)`;dots.forEach((d,i)=>d.classList.toggle('on',i===idx));};
+  const rst=()=>{clearInterval(tim);tim=setInterval(()=>go(idx+1),4200);};
+  document.getElementById('sNext').onclick=()=>{go(idx+1);rst();};
+  document.getElementById('sPrev').onclick=()=>{go(idx-1);rst();};
+  dots.forEach(d=>d.addEventListener('click',()=>{go(+d.dataset.i);rst();}));
+  let tx=0;
+  track.addEventListener('touchstart',e=>tx=e.touches[0].clientX);
+  track.addEventListener('touchend',e=>{const dx=tx-e.changedTouches[0].clientX;if(Math.abs(dx)>50){dx>0?go(idx+1):go(idx-1);rst();}});
+  tim=setInterval(()=>go(idx+1),4200);
+
+  // Nav shadow
+  const nav=document.querySelector('nav');
+  window.addEventListener('scroll',()=>nav.style.boxShadow=window.scrollY>30?'0 2px 24px rgba(0,0,0,0.07)':'none');
+</script>
+
+</body>
+</html>
