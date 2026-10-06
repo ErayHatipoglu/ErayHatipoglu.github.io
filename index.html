@@ -3,648 +3,395 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Eray Hatipoğlu</title>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
-  <style>
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-
-    :root{
-      --sand:#f8f7f4;
-      --white:#ffffff;
-      --ink:#171614;
-      --mid:#90908a;
-      --line:rgba(23,22,20,0.09);
-      --blue:#2563eb;
-      --bluelt:#dbeafe;
-    }
-
-    html{scroll-behavior:smooth}
-    body{
-      font-family:'Plus Jakarta Sans',sans-serif;color:var(--ink);overflow-x:hidden;
-      background:url('https://images.unsplash.com/photo-1680820364850-0064a0ae6d16?auto=format&fit=crop&w=3000&q=100') center/cover fixed;
-    }
-
-    /* ── NAV ── */
-    nav{
-      position:fixed;top:0;left:0;right:0;z-index:300;
-      height:60px;display:flex;align-items:center;justify-content:space-between;
-      padding:0 3.5rem;
-      background:rgba(248,247,244,0.96);backdrop-filter:blur(16px);
-      border-bottom:1px solid var(--line);
-    }
-    .logo{font-size:1.1rem;font-weight:800;letter-spacing:-0.02em;color:var(--ink);text-decoration:none}
-    .logo span{color:var(--blue)}
-    .nav-links{list-style:none;display:flex;gap:2rem}
-    .nav-links a{font-size:0.78rem;font-weight:500;letter-spacing:0.04em;color:var(--ink);text-decoration:none;opacity:.4;transition:opacity .2s}
-    .nav-links a:hover{opacity:1}
-
-
-    /* ── HERO ── */
-    #hero{
-      min-height:100vh;position:relative;
-      display:flex;flex-direction:column;justify-content:center;align-items:flex-start;
-      padding:0 3.5rem;
-      background:url('https://images.unsplash.com/photo-1680820364850-0064a0ae6d16?auto=format&fit=crop&w=3000&q=100') center/cover no-repeat fixed;
-    }
-    #hero::before{
-      content:'';position:absolute;inset:0;
-      background:linear-gradient(135deg,rgba(8,6,4,.78) 0%,rgba(8,6,4,.45) 55%,rgba(8,6,4,.2) 100%)
-    }
-    .hero-inner{position:relative;z-index:2;color:#fff;max-width:900px}
-    .hero-hello{
-      font-size:.82rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
-      opacity:.55;margin-bottom:1.4rem;display:flex;align-items:center;gap:.7rem
-    }
-    .hero-hello::before{content:'';width:28px;height:1.5px;background:var(--blue);display:block}
-
-    /* BIG typewriter */
-    .hero-name{
-      font-size:clamp(2.8rem,7vw,5.5rem);
-      font-weight:800;line-height:1.08;letter-spacing:-.03em;
-      margin-bottom:.6rem
-    }
-    .hero-tw-block{
-      font-size:clamp(2.4rem,6vw,5rem);
-      font-weight:700;line-height:1.1;letter-spacing:-.03em;
-      margin-bottom:2rem;min-height:1.2em;
-      display:flex;align-items:center
-    }
-    #tw{padding-right:5px;transition:color .3s}
-    #tw.c0{color:#4f6ef7;border-right:3px solid #4f6ef7}
-    #tw.c1{color:#22c55e;border-right:3px solid #22c55e}
-    #tw.c2{color:#f43f5e;border-right:3px solid #f43f5e}
-    #tw.c3{color:#a855f7;border-right:3px solid #a855f7}
-    #tw.c4{color:#fb923c;border-right:3px solid #fb923c}
-    #tw.c5{color:#4f6ef7;border-right:3px solid #4f6ef7}
-    @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-    .hero-desc{font-size:1rem;font-weight:300;opacity:.65;line-height:1.8;max-width:50ch;margin-bottom:2.4rem}
-    .hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
-    .btn-prim{
-      display:inline-block;padding:.82em 2em;background:var(--blue);color:#fff;
-      font-size:.8rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
-      text-decoration:none;border-radius:6px;transition:background .2s
-    }
-    .btn-prim:hover{background:#1d4ed8}
-    .btn-sec{
-      display:inline-block;padding:.82em 2em;
-      border:1.5px solid rgba(255,255,255,.35);color:#fff;
-      font-size:.8rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
-      text-decoration:none;border-radius:6px;transition:all .2s
-    }
-    .btn-sec:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.7)}
-
-    /* ── SLIDER ── */
-    #slider-wrap{position:relative;overflow:hidden;background:#0c0b09}
-    .slider-track{display:flex;width:500%;transition:transform .5s cubic-bezier(.65,0,.35,1)}
-    .slide{
-      width:100%;height:46rem;
-      display:grid;grid-template-columns:1.1fr .9fr;
-      align-items:center;position:relative;overflow:hidden
-    }
-    .slide-bg{position:absolute;inset:0}
-    .slide-skew{
-      position:absolute;inset:0;width:62%;left:-6%;
-      transform:skewX(5deg);transform-origin:bottom left;
-      background:rgba(0,0,0,.26)
-    }
-    .slide-skew::after{content:'';position:absolute;inset:0;background:inherit;transform:skewX(7deg)}
-    .slide-content{position:relative;z-index:2;padding:0 3rem 0 5rem;color:#fff}
-    .slide-num{font-size:5rem;font-weight:800;opacity:.05;line-height:1;margin-bottom:-.4rem;letter-spacing:-.04em}
-    .slide-tag{font-size:.65rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;opacity:.45;margin-bottom:.7rem}
-    .slide-title{font-size:2.4rem;font-weight:800;line-height:1.1;letter-spacing:-.02em;margin-bottom:1rem}
-    .slide-desc{font-size:.86rem;line-height:1.8;opacity:.55;max-width:38ch;margin-bottom:1.8rem}
-    .slide-cta{
-      display:inline-block;padding:.65em 1.8em;
-      font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
-      text-decoration:none;color:#fff;border:1.5px solid rgba(255,255,255,.3);
-      border-radius:4px;transition:all .25s
-    }
-    .slide-cta:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.7)}
-    .slide-vis{position:relative;z-index:2;display:flex;align-items:center;justify-content:center}
-    .slide-shape{
-      width:13rem;height:18rem;border-radius:2.5rem;
-      transform:rotate(-6deg) skewX(-4deg);position:relative
-    }
-    .slide-shape::before,.slide-shape::after{content:'';position:absolute;inset:0;border-radius:2.5rem}
-    .slide-shape::before{transform:translate(1.2rem,-1.8rem);opacity:.25}
-    .slide-shape::after{transform:translate(2.4rem,-.8rem);opacity:.15}
-
-    .s0 .slide-bg{background:#080d1a}.s0 .slide-shape,.s0 .slide-shape::before,.s0 .slide-shape::after{background:#4f6ef7}
-    .s1 .slide-bg{background:#06120d}.s1 .slide-shape,.s1 .slide-shape::before,.s1 .slide-shape::after{background:#22c55e}
-    .s2 .slide-bg{background:#130607}.s2 .slide-shape,.s2 .slide-shape::before,.s2 .slide-shape::after{background:#f43f5e}
-    .s3 .slide-bg{background:#0e0814}.s3 .slide-shape,.s3 .slide-shape::before,.s3 .slide-shape::after{background:#a855f7}
-    .s4 .slide-bg{background:#140c04}.s4 .slide-shape,.s4 .slide-shape::before,.s4 .slide-shape::after{background:#fb923c}
-
-    .s-prev,.s-next{
-      position:absolute;top:50%;transform:translateY(-50%);z-index:10;
-      width:3rem;height:3rem;cursor:pointer;
-      background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);
-      color:#fff;font-size:1rem;display:flex;align-items:center;justify-content:center;
-      transition:background .2s;border-radius:4px
-    }
-    .s-prev{left:1.5rem}.s-next{right:1.5rem}
-    .s-prev:hover,.s-next:hover{background:rgba(255,255,255,.16)}
-    .s-dots{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;gap:.6rem;z-index:10}
-    .s-dot{height:3px;width:2rem;background:rgba(255,255,255,.2);cursor:pointer;transition:all .3s;border-radius:2px}
-    .s-dot.on{background:#fff;width:3.2rem}
-
-    /* ── SECTION COMMON ── */
-    .sec-label{
-      font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
-      color:var(--blue);margin-bottom:1rem;
-      display:flex;align-items:center;gap:.6rem
-    }
-    .sec-label::after{content:'';flex:1;height:1.5px;background:var(--blue);opacity:.18}
-    h2.sec-h{font-size:2.6rem;font-weight:800;line-height:1.1;letter-spacing:-.025em;margin-bottom:1.8rem}
-    h2.sec-h-light{font-size:2.6rem;font-weight:800;line-height:1.1;letter-spacing:-.025em;color:#fff;margin-bottom:2.8rem}
-
-    /* ── ABOUT ── */
-    #about{background:var(--white);padding:7rem 3.5rem;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start}
-    .about-p{font-size:.92rem;line-height:1.9;color:#58564f;margin-bottom:1.1rem}
-    .ilist{display:flex;flex-direction:column;padding-top:.5rem}
-    .irow{display:flex;align-items:baseline;gap:1rem;padding:.85rem 0;border-bottom:1px solid var(--line)}
-    .ik{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);min-width:82px}
-    .iv{font-size:.88rem;font-weight:400}
-    .iv a{color:var(--ink);text-decoration:none;transition:color .2s}
-    .iv a:hover{color:var(--blue)}
-
-    /* ── SKILLS ── */
-    #skills{
-      background:url('https://images.unsplash.com/photo-1680820364850-0064a0ae6d16?auto=format&fit=crop&w=3000&q=100') center/cover no-repeat fixed;
-      padding:7rem 3.5rem;position:relative
-    }
-    #skills::before{content:'';position:absolute;inset:0;background:rgba(5,4,3,.78)}
-    .skills-in{position:relative;z-index:1}
-    .skills-in .sec-label{color:#60a5fa}
-    .skills-in .sec-label::after{background:#60a5fa}
-    .sg-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem}
-    .sg h4{font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#60a5fa;margin-bottom:1.2rem;padding-bottom:.6rem;border-bottom:1px solid rgba(96,165,250,.2)}
-    .sg ul{list-style:none;display:flex;flex-direction:column;gap:.55rem}
-    .sg li{font-size:.84rem;color:rgba(255,255,255,.55);display:flex;align-items:center;gap:.6rem}
-    .sg li::before{content:'';width:4px;height:4px;border-radius:50%;background:#60a5fa;flex-shrink:0}
-
-    /* ── PROJECTS ── */
-    #projects{background:var(--sand);padding:7rem 3.5rem}
-    .ph{margin-bottom:3rem}
-    .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;background:var(--line);border:1.5px solid var(--line)}
-    .pc{background:var(--white);padding:2.2rem;transition:background .3s}
-    .pc:hover{background:var(--ink)}
-    .pn{font-size:3rem;font-weight:800;color:rgba(0,0,0,.04);line-height:1;margin-bottom:1rem;letter-spacing:-.04em;transition:color .3s}
-    .pc:hover .pn{color:rgba(255,255,255,.05)}
-    .pt{font-size:.9rem;font-weight:700;margin-bottom:.6rem;transition:color .3s}
-    .pc:hover .pt{color:#fff}
-    .pd{font-size:.8rem;line-height:1.75;color:var(--mid);transition:color .3s}
-    .pc:hover .pd{color:rgba(255,255,255,.45)}
-    .ptags{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:1.2rem}
-    .ptg{font-size:.6rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.22em .65em;border:1px solid var(--line);color:var(--mid);transition:all .3s;border-radius:3px}
-    .pc:hover .ptg{border-color:rgba(255,255,255,.14);color:rgba(255,255,255,.35)}
-
-    /* ── EDUCATION ── */
-    #education{background:var(--white);padding:7rem 3.5rem;display:grid;grid-template-columns:1fr 1.5fr;gap:6rem}
-    .edu-list{display:flex;flex-direction:column}
-    .edu-row{display:grid;grid-template-columns:52px 1fr;gap:1.8rem;padding:2rem 0;border-bottom:1px solid var(--line);align-items:start}
-    .edu-yr{font-size:.76rem;font-weight:700;color:var(--blue);writing-mode:vertical-lr;letter-spacing:.06em;margin-top:3px}
-    .edu-school{font-size:1rem;font-weight:700;margin-bottom:.2rem}
-    .edu-field{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:.55rem}
-    .edu-desc{font-size:.82rem;color:var(--mid);line-height:1.7}
-
-    /* ── INTERESTS ── */
-    #interests{background:rgba(23,22,20,0.72);backdrop-filter:blur(10px);padding:5rem 3.5rem;display:flex;flex-direction:column;align-items:center;text-align:center}
-    .int-label{font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#60a5fa;margin-bottom:.8rem}
-    h2.int-title{font-size:2.4rem;font-weight:800;letter-spacing:-.025em;color:#fff;margin-bottom:2.5rem}
-    .itags{display:flex;flex-wrap:wrap;justify-content:center;gap:.55rem;max-width:680px}
-    .itag{font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.5em 1.1em;border:1px solid rgba(96,165,250,.25);color:rgba(255,255,255,.48);transition:all .2s;cursor:default;border-radius:4px}
-    .itag:hover{border-color:#60a5fa;color:#60a5fa}
-
-    /* ── FOOTER (contact + map) ── */
-    #footer-block{background:var(--white)}
-
-    /* contact strip */
-    .footer-contact{
-      display:grid;grid-template-columns:1fr 1fr;gap:0;
-      border-top:1px solid var(--line)
-    }
-    .fc-form{padding:4.5rem 3.5rem;border-right:1px solid var(--line)}
-    .fc-form h3{font-size:1.8rem;font-weight:800;letter-spacing:-.025em;margin-bottom:.4rem}
-    .fc-form>p{font-size:.88rem;color:var(--mid);margin-bottom:2.2rem;line-height:1.7}
-    .form-row{display:flex;flex-direction:column;gap:.45rem;margin-bottom:1.1rem}
-    .form-row label{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--mid)}
-    .form-row input,.form-row textarea{
-      width:100%;padding:.85em 1.1em;
-      border:1.5px solid rgba(23,22,20,.1);
-      background:rgba(248,247,244,.7);
-      font-family:inherit;font-size:.9rem;color:var(--ink);
-      border-radius:10px;outline:none;transition:border-color .2s,background .2s,box-shadow .2s;resize:none
-    }
-    .form-row input:focus,.form-row textarea:focus{
-      border-color:var(--blue);background:#fff;
-      box-shadow:0 0 0 4px rgba(37,99,235,.08)
-    }
-    .form-row textarea{height:120px}
-    .form-submit{
-      width:100%;padding:1em 1.4em;margin-top:.8rem;
-      background:linear-gradient(135deg,#25d366 0%,#128c7e 100%);
-      color:#fff;font-family:inherit;font-size:.85rem;font-weight:700;
-      letter-spacing:.06em;text-transform:uppercase;
-      border:none;border-radius:10px;cursor:pointer;
-      display:flex;align-items:center;justify-content:center;gap:.6rem;
-      box-shadow:0 4px 18px rgba(37,211,102,.3);
-      transition:transform .15s,box-shadow .15s
-    }
-    .form-submit:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(37,211,102,.45)}
-    .form-submit:active{transform:translateY(0)}
-    .wa-note{font-size:.72rem;color:var(--mid);text-align:center;margin-top:.6rem;line-height:1.5}
-
-    .fc-info{padding:4.5rem 3.5rem;display:flex;flex-direction:column;gap:2rem}
-    .fc-info h3{font-size:1.6rem;font-weight:800;letter-spacing:-.02em;margin-bottom:.2rem}
-    .fc-info p{font-size:.88rem;color:var(--mid);line-height:1.7;margin-bottom:1.5rem}
-    .ci-item{display:flex;align-items:flex-start;gap:1rem}
-    .ci-icon{
-      width:40px;height:40px;border-radius:8px;background:var(--bluelt);
-      display:flex;align-items:center;justify-content:center;flex-shrink:0;
-      font-size:1.1rem
-    }
-    .ci-label{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);margin-bottom:.2rem}
-    .ci-val{font-size:.88rem;font-weight:500}
-    .ci-val a{color:var(--ink);text-decoration:none;transition:color .2s}
-    .ci-val a:hover{color:var(--blue)}
-
-    /* social row */
-    .social-row{display:flex;gap:.6rem;margin-top:.5rem}
-    .social-pill{
-      display:inline-flex;align-items:center;gap:.4rem;
-      padding:.45em 1em;border-radius:20px;
-      background:var(--sand);border:1px solid var(--line);
-      font-size:.7rem;font-weight:600;color:var(--ink);text-decoration:none;
-      transition:all .2s
-    }
-    .social-pill:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
-
-    /* map */
-    #map-section{position:relative}
-    #map-section iframe{display:block;width:100%;height:400px;border:0;filter:saturate(.75)}
-
-    /* footer bar */
-    .footer-bar{
-      background:var(--ink);color:rgba(255,255,255,.3);
-      padding:1.4rem 3.5rem;display:flex;justify-content:space-between;align-items:center;
-      font-size:.7rem;letter-spacing:.06em
-    }
-    .footer-bar a{color:rgba(255,255,255,.4);text-decoration:none}
-    .footer-bar a:hover{color:#fff}
-
-    @media(max-width:900px){
-      nav{padding:0 1.5rem}.nav-links,.nav-cta{display:none}
-      #hero{padding:0 1.5rem}
-      #about,#education,.footer-contact{grid-template-columns:1fr;gap:0}
-      .fc-form,.fc-info{padding:3rem 1.5rem}
-      .fc-form{border-right:none;border-bottom:1px solid var(--line)}
-      #skills,#projects,#interests,#contact{padding:4.5rem 1.5rem}
-      .sg-grid,.pgrid{grid-template-columns:1fr}
-      .slide{grid-template-columns:1fr}
-      .slide-vis{display:none}
-      .slide-content{padding:3rem 2rem}
-      .footer-bar{padding:1.2rem 1.5rem;flex-direction:column;gap:.3rem;text-align:center}
-    }
-  </style>
+  <title>Eray Hatipoğlu — Robotik, Yapay Zeka & Yazılım</title>
+  <meta name="description" content="Eray Hatipoğlu — İstanbul'da robotik, yapay zeka destekli otomasyon, gömülü sistemler ve full stack geliştirme üzerine çalışan çok disiplinli geliştirici.">
+  <meta name="theme-color" content="#07070b">
+  <meta property="og:title" content="Eray Hatipoğlu — Developer & Engineer">
+  <meta property="og:description" content="Robotik, yapay zeka, gömülü sistemler ve full stack geliştirme.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <a href="#hero" class="logo">Eray<span>.</span></a>
-  <ul class="nav-links">
-    <li><a href="#about">Hakkımda</a></li>
-    <li><a href="#skills">Yetenekler</a></li>
-    <li><a href="#projects">Projeler</a></li>
-    <li><a href="#education">Eğitim</a></li>
-    <li><a href="#footer-block">İletişim</a></li>
-  </ul>
-
-</nav>
-
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-inner">
-    <p class="hero-hello">Developer & Engineer — İstanbul, TR</p>
-    <h1 class="hero-name">Eray Hatipoğlu</h1>
-    <div class="hero-tw-block"><span id="tw"></span></div>
-    <p class="hero-desc">Robotik sistemler, yapay zeka destekli otomasyon, gömülü yazılım ve full stack geliştirme alanlarında çok disiplinli bir mühendis.</p>
-    <div class="hero-btns">
-      <a href="#about" class="btn-prim">Hakkımda</a>
-      <a href="#footer-block" class="btn-sec">İletişime Geç</a>
-    </div>
-  </div>
-</section>
-
-<!-- SLIDER -->
-<div id="slider-wrap">
-  <div class="slider-track" id="sliderTrack">
-    <div class="slide s0">
-      <div class="slide-bg"></div><div class="slide-skew"></div>
-      <div class="slide-content">
-        <div class="slide-num">01</div>
-        <p class="slide-tag">Proje — AI</p>
-        <h2 class="slide-title">Sosyal Medya<br>Otomasyon Sistemi</h2>
-        <p class="slide-desc">Python ve lokal AI modelleri ile içerik üretimi, iş akışı yönetimi ve otomatik medya işleme altyapısı.</p>
-        <a href="#projects" class="slide-cta">İncele →</a>
-      </div>
-      <div class="slide-vis"><div class="slide-shape"></div></div>
-    </div>
-    <div class="slide s1">
-      <div class="slide-bg"></div><div class="slide-skew"></div>
-      <div class="slide-content">
-        <div class="slide-num">02</div>
-        <p class="slide-tag">Proje — Computer Vision</p>
-        <h2 class="slide-title">Bilgisayarlı Görü<br>& OpenCV</h2>
-        <p class="slide-desc">Gerçek zamanlı görüntü işleme, nesne tespiti ve kamera tabanlı otomasyon sistemleri geliştirme.</p>
-        <a href="#projects" class="slide-cta">İncele →</a>
-      </div>
-      <div class="slide-vis"><div class="slide-shape"></div></div>
-    </div>
-    <div class="slide s2">
-      <div class="slide-bg"></div><div class="slide-skew"></div>
-      <div class="slide-content">
-        <div class="slide-num">03</div>
-        <p class="slide-tag">Proje — .NET</p>
-        <h2 class="slide-title">Windows & .NET<br>Uygulamaları</h2>
-        <p class="slide-desc">ASP.NET, .NET Framework ve C# ile masaüstü uygulamaları ve kapsamlı otomasyon araçları.</p>
-        <a href="#projects" class="slide-cta">İncele →</a>
-      </div>
-      <div class="slide-vis"><div class="slide-shape"></div></div>
-    </div>
-    <div class="slide s3">
-      <div class="slide-bg"></div><div class="slide-skew"></div>
-      <div class="slide-content">
-        <div class="slide-num">04</div>
-        <p class="slide-tag">Proje — Mobile</p>
-        <h2 class="slide-title">Flutter Mobil<br>Uygulama</h2>
-        <p class="slide-desc">Dart ve Flutter ile çapraz platform modern mobil uygulamalar ve performanslı UI/UX geliştirme.</p>
-        <a href="#projects" class="slide-cta">İncele →</a>
-      </div>
-      <div class="slide-vis"><div class="slide-shape"></div></div>
-    </div>
-    <div class="slide s4">
-      <div class="slide-bg"></div><div class="slide-skew"></div>
-      <div class="slide-content">
-        <div class="slide-num">05</div>
-        <p class="slide-tag">Proje — Embedded</p>
-        <h2 class="slide-title">Raspberry Pi &<br>Arduino Sistemleri</h2>
-        <p class="slide-desc">Sensör entegrasyonu, motor sürücü sistemleri ve gerçek zamanlı gömülü Linux geliştirme.</p>
-        <a href="#projects" class="slide-cta">İncele →</a>
-      </div>
-      <div class="slide-vis"><div class="slide-shape"></div></div>
-    </div>
-  </div>
-  <button class="s-prev" id="sPrev">&#8592;</button>
-  <button class="s-next" id="sNext">&#8594;</button>
-  <div class="s-dots" id="sDots">
-    <div class="s-dot on" data-i="0"></div>
-    <div class="s-dot" data-i="1"></div>
-    <div class="s-dot" data-i="2"></div>
-    <div class="s-dot" data-i="3"></div>
-    <div class="s-dot" data-i="4"></div>
+<!-- BOOT -->
+<div id="boot" aria-hidden="true">
+  <div class="boot-in">
+    <div class="boot-lines" id="bootLines"></div>
+    <div class="boot-bar"><span id="bootBar"></span></div>
+    <div class="boot-pct" id="bootPct">0%</div>
   </div>
 </div>
 
-<!-- ABOUT -->
-<section id="about">
-  <div>
-    <p class="sec-label">Hakkımda</p>
-    <h2 class="sec-h">Yazılım,<br>Donanım &<br>Yapay Zeka.</h2>
-    <p class="about-p">Raspberry Pi, Arduino ve Linux tabanlı sistemlerde ileri düzey teknik deneyime sahip çok yönlü bir geliştiriciyim. Python ile AI destekli içerik üretim altyapıları ve görüntü işleme uygulamaları geliştiriyorum.</p>
-    <p class="about-p">Full stack web, masaüstü, mobil ve gerçek zamanlı sistemlerde aktif projeler üretiyorum. Farklı disiplinlerde kısa sürede üretken hale gelebiliyorum.</p>
+<div class="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+<div class="progress" aria-hidden="true"><span id="progress"></span></div>
+<div class="noise" aria-hidden="true"></div>
+
+<!-- NAV -->
+<header class="nav-wrap">
+  <nav class="nav" aria-label="Ana menü">
+    <a href="#hero" class="logo" aria-label="Başa dön">eray<span>.</span>os</a>
+    <ul class="nav-links">
+      <li><a href="#about" data-sec="about">Hakkımda</a></li>
+      <li><a href="#skills" data-sec="skills">Yetenekler</a></li>
+      <li><a href="#projects" data-sec="projects">Projeler</a></li>
+      <li><a href="#education" data-sec="education">Eğitim</a></li>
+      <li><a href="#contact" data-sec="contact">İletişim</a></li>
+      <span class="nav-pill" aria-hidden="true"></span>
+    </ul>
+    <button class="term-btn" id="termOpen" aria-label="Terminali aç" title="Terminali aç ( ` )"><span>&gt;_</span></button>
+    <button class="burger" id="burger" aria-label="Menüyü aç"><i></i><i></i></button>
+  </nav>
+</header>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about">Hakkımda</a><a href="#skills">Yetenekler</a><a href="#projects">Projeler</a><a href="#education">Eğitim</a><a href="#contact">İletişim</a>
+</div>
+
+<main>
+<!-- HERO -->
+<section id="hero">
+  <canvas id="net" aria-hidden="true"></canvas>
+  <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="grid-bg" aria-hidden="true"></div>
+
+  <div class="hero-wrap">
+    <div class="hero-inner">
+      <p class="badge reveal"><span class="pulse"></span>Yeni projelere ve iş birliklerine açık</p>
+      <p class="hero-hello reveal">Merhaba, ben <span class="wave">👋</span></p>
+      <h1 class="hero-name" id="heroName" aria-label="Eray Hatipoğlu">Eray Hatipoğlu</h1>
+      <div class="hero-role reveal"><span class="mono">&gt;</span> <span id="scramble">Robotics Developer</span><span class="caret"></span></div>
+      <p class="hero-desc reveal">Robotik sistemler, <em>yapay zeka</em> destekli otomasyon, gömülü yazılım ve full stack geliştirme alanlarında çalışan çok disiplinli bir mühendis. İstanbul'dan, bolca kahveyle. ☕</p>
+      <div class="hero-btns reveal">
+        <a href="#projects" class="btn btn-main magnetic"><span>Projelerimi Gör</span><svg viewBox="0 0 24 24" width="18" height="18"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="#contact" class="btn btn-ghost magnetic"><span>İletişime Geç</span></a>
+      </div>
+      <div class="hero-social reveal">
+        <a href="https://github.com/ErayHatipoglu" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.18 1.84 1.18 3.1 0 4.42-2.69 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg></a>
+        <a href="https://linkedin.com/in/eray-hatipoğlu-8ba690410" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg></a>
+        <a href="mailto:erayhatipoglu98@gmail.com" aria-label="E-posta"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="none" stroke="currentColor" stroke-width="2" d="M3 5h18v14H3zM3 6l9 7 9-7"/></svg></a>
+        <span class="hint mono">ipucu: <kbd>`</kbd> tuşuna bas</span>
+      </div>
+    </div>
+
+    <div class="code-card reveal" id="codeCard" aria-hidden="true">
+      <div class="win-bar"><i></i><i></i><i></i><span>eray.py</span></div>
+      <pre class="code"><code id="codeType"></code></pre>
+    </div>
   </div>
-  <div class="ilist">
-    <div class="irow"><span class="ik">Doğum</span><span class="iv">27.07.2007</span></div>
-    <div class="irow"><span class="ik">Konum</span><span class="iv">İstanbul, Türkiye</span></div>
-    <div class="irow"><span class="ik">Telefon</span><span class="iv">0555 061 24 09</span></div>
-    <div class="irow"><span class="ik">E-posta</span><span class="iv"><a href="mailto:erayhatipoglu98@gmail.com">erayhatipoglu98@gmail.com</a></span></div>
-    <div class="irow"><span class="ik">LinkedIn</span><span class="iv"><a href="https://linkedin.com/in/eray-hatipoğlu-8ba690410" target="_blank">linkedin.com/in/eray-hatipoğlu</a></span></div>
-    <div class="irow"><span class="ik">GitHub</span><span class="iv"><a href="https://github.com/ErayHatipoglu" target="_blank">github.com/ErayHatipoglu</a></span></div>
-    <div class="irow"><span class="ik">Dil</span><span class="iv">İngilizce — B2</span></div>
+
+  <a href="#marquee" class="scroll-ind" aria-label="Aşağı kaydır"><span></span></a>
+</section>
+
+<!-- MARQUEE -->
+<div id="marquee" aria-hidden="true">
+  <div class="mq mq-a"><div class="mq-track">
+    <span>Python</span><b>✦</b><span>C / C++</span><b>✦</b><span>C#</span><b>✦</b><span>Dart</span><b>✦</b><span>Java</span><b>✦</b><span>OpenCV</span><b>✦</b><span>Flutter</span><b>✦</b><span>ASP.NET</span><b>✦</b><span>Raspberry Pi</span><b>✦</b><span>Arduino</span><b>✦</b><span>Linux</span><b>✦</b><span>Unity</span><b>✦</b>
+  </div></div>
+  <div class="mq mq-b"><div class="mq-track">
+    <span>Yapay Zeka</span><b>●</b><span>Robotik</span><b>●</b><span>Siber Güvenlik</span><b>●</b><span>OSINT</span><b>●</b><span>Gömülü Sistemler</span><b>●</b><span>Bilgisayarlı Görü</span><b>●</b><span>Otomasyon</span><b>●</b><span>Reverse Engineering</span><b>●</b>
+  </div></div>
+</div>
+
+<!-- ABOUT -->
+<section id="about" class="sec">
+  <div class="sec-head reveal">
+    <p class="sec-label"><span>[01]</span> Hakkımda</p>
+    <h2 class="sec-title">Yazılım, donanım <br>&amp; <em>yapay zeka</em>.</h2>
+  </div>
+
+  <div class="bento">
+    <article class="card b-intro reveal spot">
+      <div class="avatar" aria-hidden="true"><span>EH</span></div>
+      <p class="lead">Raspberry Pi, Arduino ve Linux tabanlı sistemlerde ileri düzey teknik deneyime sahip, çok yönlü bir geliştiriciyim.</p>
+      <p>Python ile AI destekli içerik üretim altyapıları ve görüntü işleme uygulamaları geliştiriyorum. Full stack web, masaüstü, mobil ve gerçek zamanlı sistemlerde aktif projeler üretiyorum. Farklı disiplinlerde kısa sürede üretken hale gelebiliyorum.</p>
+    </article>
+
+    <article class="card b-stats reveal spot">
+      <div class="stat"><strong data-count="6" data-suffix="+">0</strong><span>Programlama dili</span></div>
+      <div class="stat"><strong data-count="24" data-suffix="+">0</strong><span>Teknoloji & araç</span></div>
+      <div class="stat"><strong id="age">0</strong><span>Yaş</span></div>
+      <div class="stat"><strong>∞</strong><span>Merak</span></div>
+    </article>
+
+    <article class="card b-clock reveal spot">
+      <p class="mono small">İstanbul'da saat</p>
+      <div class="clock" id="clock">--:--:--</div>
+      <p class="status"><span class="pulse"></span><span id="doing">Muhtemelen kod yazıyor</span></p>
+    </article>
+
+    <article class="card b-info reveal spot">
+      <ul class="info">
+        <li><span>Konum</span><b>İstanbul, Türkiye</b></li>
+        <li><span>Doğum</span><b>27.07.2007</b></li>
+        <li><span>Telefon</span><b><a href="tel:+905550612409">0555 061 24 09</a></b></li>
+        <li><span>E-posta</span><b><button class="copy" data-copy="erayhatipoglu98@gmail.com" title="Kopyala">erayhatipoglu98@gmail.com</button></b></li>
+        <li><span>Dil</span><b>İngilizce — B2</b></li>
+      </ul>
+    </article>
+
+    <article class="card b-coffee reveal spot">
+      <p class="mono small">Yakıt durumu</p>
+      <button class="coffee-btn" id="coffeeBtn" aria-label="Kahve ısmarla">☕</button>
+      <p><b id="coffeeN">0</b> kahve ısmarlandı. Bir tane de sen ısmarla!</p>
+    </article>
+
+    <article class="card b-now reveal spot">
+      <p class="mono small">Şu an</p>
+      <p class="now">🎓 Doğuş Üniversitesi'nde <b>Bilişim Güvenliği Teknolojisi</b> okuyorum ve robotik + yapay zeka projeleri geliştiriyorum.</p>
+    </article>
   </div>
 </section>
 
 <!-- SKILLS -->
-<section id="skills">
-  <div class="skills-in">
-    <p class="sec-label">Teknik Yetenekler</p>
-    <h2 class="sec-h-light">Teknoloji Yığını</h2>
-    <div class="sg-grid">
-      <div class="sg"><h4>Programlama</h4><ul>
-        <li>Python — İleri</li><li>C / C++ — İleri</li>
-        <li>C# — İleri</li><li>Dart — İleri</li>
-        <li>Java — İleri</li><li>HTML5 / CSS3 — İleri</li>
-      </ul></div>
-      <div class="sg"><h4>Framework & AI</h4><ul>
-        <li>OpenCV</li><li>Flutter</li>
-        <li>ASP.NET / MVC</li><li>.NET Framework</li>
-        <li>AI Automation</li><li>Local AI Inference</li>
-      </ul></div>
-      <div class="sg"><h4>Robotik & Gömülü</h4><ul>
-        <li>Raspberry Pi</li><li>Arduino</li>
-        <li>Motor Driver Systems</li><li>Sensor Integration</li>
-        <li>Embedded Linux</li><li>Real-Time Control</li>
-      </ul></div>
-      <div class="sg"><h4>Güvenlik & Diğer</h4><ul>
-        <li>OSINT Tools</li><li>Reverse Engineering</li>
-        <li>Web Automation</li><li>Linux Ecosystem</li>
-        <li>REST API</li><li>Unity</li>
-      </ul></div>
+<section id="skills" class="sec">
+  <div class="sec-head reveal">
+    <p class="sec-label"><span>[02]</span> Yetenekler</p>
+    <h2 class="sec-title">Teknoloji <em>yığını</em>.</h2>
+    <p class="sec-sub">Küreyi sürükle, çevir, keşfet. 🌐</p>
+  </div>
+
+  <div class="skills-layout">
+    <div class="sphere-wrap reveal">
+      <div class="sphere" id="sphere"></div>
+      <div class="sphere-glow" aria-hidden="true"></div>
+    </div>
+
+    <div class="sk-grid">
+      <article class="card sk reveal spot" style="--c:#8b7bff">
+        <div class="sk-ico">⌨️</div>
+        <h3>Programlama</h3>
+        <ul class="levels">
+          <li><span>Python</span><i style="--v:95%"></i></li>
+          <li><span>C / C++</span><i style="--v:88%"></i></li>
+          <li><span>C#</span><i style="--v:88%"></i></li>
+          <li><span>Dart</span><i style="--v:84%"></i></li>
+          <li><span>Java</span><i style="--v:80%"></i></li>
+          <li><span>HTML5 / CSS3</span><i style="--v:90%"></i></li>
+        </ul>
+      </article>
+      <article class="card sk reveal spot" style="--c:#2ee6a6">
+        <div class="sk-ico">🧠</div>
+        <h3>Framework &amp; AI</h3>
+        <div class="chips"><span>OpenCV</span><span>Flutter</span><span>ASP.NET / MVC</span><span>.NET Framework</span><span>AI Automation</span><span>Local AI Inference</span></div>
+      </article>
+      <article class="card sk reveal spot" style="--c:#ff8a3d">
+        <div class="sk-ico">🤖</div>
+        <h3>Robotik &amp; Gömülü</h3>
+        <div class="chips"><span>Raspberry Pi</span><span>Arduino</span><span>Motor Driver Systems</span><span>Sensor Integration</span><span>Embedded Linux</span><span>Real-Time Control</span></div>
+      </article>
+      <article class="card sk reveal spot" style="--c:#ff4f8b">
+        <div class="sk-ico">🛡️</div>
+        <h3>Güvenlik &amp; Diğer</h3>
+        <div class="chips"><span>OSINT Tools</span><span>Reverse Engineering</span><span>Web Automation</span><span>Linux Ecosystem</span><span>REST API</span><span>Unity</span></div>
+      </article>
     </div>
   </div>
 </section>
 
 <!-- PROJECTS -->
 <section id="projects">
-  <div class="ph">
-    <p class="sec-label">Projeler</p>
-    <h2 class="sec-h">Öne Çıkan Çalışmalar</h2>
-  </div>
-  <div class="pgrid">
-    <div class="pc"><div class="pn">01</div><div class="pt">AI Sosyal Medya Otomasyonu</div><p class="pd">Python ve lokal AI modelleri ile içerik üretimi ve iş akışı yönetimi. Otomatik medya işleme.</p><div class="ptags"><span class="ptg">Python</span><span class="ptg">Local AI</span><span class="ptg">Automation</span></div></div>
-    <div class="pc"><div class="pn">02</div><div class="pt">Bilgisayarlı Görü & OpenCV</div><p class="pd">Gerçek zamanlı görüntü işleme ve otomasyon. Kamera tabanlı sistem geliştirme.</p><div class="ptags"><span class="ptg">Python</span><span class="ptg">OpenCV</span><span class="ptg">CV</span></div></div>
-    <div class="pc"><div class="pn">03</div><div class="pt">Windows & .NET Uygulamaları</div><p class="pd">ASP.NET, .NET Framework ve C# ile masaüstü uygulama ve otomasyon araçları.</p><div class="ptags"><span class="ptg">C#</span><span class="ptg">ASP.NET</span><span class="ptg">.NET</span></div></div>
-    <div class="pc"><div class="pn">04</div><div class="pt">Full Stack Web Projeleri</div><p class="pd">Modern arayüzlere sahip yüksek performanslı web siteleri. Uçtan uca geliştirme.</p><div class="ptags"><span class="ptg">ASP.NET MVC</span><span class="ptg">HTML/CSS</span><span class="ptg">JS</span></div></div>
-    <div class="pc"><div class="pn">05</div><div class="pt">Flutter Mobil Uygulama</div><p class="pd">Dart ve Flutter ile cross-platform modern mobil uygulamalar ve UI/UX geliştirme.</p><div class="ptags"><span class="ptg">Flutter</span><span class="ptg">Dart</span><span class="ptg">Mobile</span></div></div>
-    <div class="pc"><div class="pn">06</div><div class="pt">Raspberry Pi & Arduino</div><p class="pd">Sensör entegrasyonu, donanım kontrolü ve gerçek zamanlı sistem geliştirme.</p><div class="ptags"><span class="ptg">Raspberry Pi</span><span class="ptg">Arduino</span><span class="ptg">Embedded</span></div></div>
+  <div class="hs-sticky">
+    <div class="sec-head hs-head">
+      <p class="sec-label"><span>[03]</span> Projeler</p>
+      <h2 class="sec-title">Öne çıkan <em>çalışmalar</em>.</h2>
+      <p class="sec-sub hs-tip">Kaydırmaya devam et →</p>
+    </div>
+    <div class="hs-track" id="hsTrack">
+
+      <article class="pcard tilt" style="--c:#7c6cff">
+        <div class="p-vis v-ai" aria-hidden="true">
+          <svg viewBox="0 0 200 120"><g class="edges"><path d="M30 25L100 20M30 25L100 60M30 25L100 100M30 60L100 20M30 60L100 60M30 60L100 100M30 95L100 20M30 95L100 60M30 95L100 100M100 20L170 40M100 60L170 40M100 100L170 40M100 20L170 80M100 60L170 80M100 100L170 80"/></g><g class="nodes"><circle cx="30" cy="25" r="6"/><circle cx="30" cy="60" r="6"/><circle cx="30" cy="95" r="6"/><circle cx="100" cy="20" r="6"/><circle cx="100" cy="60" r="6"/><circle cx="100" cy="100" r="6"/><circle cx="170" cy="40" r="6"/><circle cx="170" cy="80" r="6"/></g></svg>
+        </div>
+        <div class="p-body">
+          <span class="p-num">01</span>
+          <h3>AI Sosyal Medya Otomasyonu</h3>
+          <p>Python ve lokal AI modelleri ile içerik üretimi, iş akışı yönetimi ve otomatik medya işleme altyapısı.</p>
+          <div class="tags"><span>Python</span><span>Local AI</span><span>Automation</span></div>
+        </div>
+      </article>
+
+      <article class="pcard tilt" style="--c:#2ee6a6">
+        <div class="p-vis v-cv" aria-hidden="true">
+          <div class="cv-scene"><span class="cv-obj o1">🚗</span><span class="cv-obj o2">🐈</span><span class="cv-obj o3">🧍</span>
+            <i class="box b1"><em>car 0.97</em></i><i class="box b2"><em>cat 0.91</em></i><i class="box b3"><em>person 0.99</em></i>
+            <i class="scan"></i></div>
+        </div>
+        <div class="p-body">
+          <span class="p-num">02</span>
+          <h3>Bilgisayarlı Görü &amp; OpenCV</h3>
+          <p>Gerçek zamanlı görüntü işleme, nesne tespiti ve kamera tabanlı otomasyon sistemleri.</p>
+          <div class="tags"><span>Python</span><span>OpenCV</span><span>CV</span></div>
+        </div>
+      </article>
+
+      <article class="pcard tilt" style="--c:#ff4f8b">
+        <div class="p-vis v-net" aria-hidden="true">
+          <div class="win"><div class="win-t"><i></i><i></i><i></i><span>App.exe</span></div>
+            <div class="win-b"><div class="side"><i></i><i></i><i></i><i></i></div><div class="main"><b></b><b></b><b></b><div class="bars"><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+        </div>
+        <div class="p-body">
+          <span class="p-num">03</span>
+          <h3>Windows &amp; .NET Uygulamaları</h3>
+          <p>ASP.NET, .NET Framework ve C# ile masaüstü uygulamaları ve kapsamlı otomasyon araçları.</p>
+          <div class="tags"><span>C#</span><span>ASP.NET</span><span>.NET</span></div>
+        </div>
+      </article>
+
+      <article class="pcard tilt" style="--c:#22c7ff">
+        <div class="p-vis v-web" aria-hidden="true">
+          <div class="browser"><div class="br-t"><i></i><i></i><i></i><span>https://</span></div>
+            <div class="br-b"><div class="hero-b"></div><div class="row"><i></i><i></i><i></i></div><code>&lt;/&gt;</code></div></div>
+        </div>
+        <div class="p-body">
+          <span class="p-num">04</span>
+          <h3>Full Stack Web Projeleri</h3>
+          <p>Modern arayüzlere sahip yüksek performanslı web siteleri. Uçtan uca geliştirme.</p>
+          <div class="tags"><span>ASP.NET MVC</span><span>HTML/CSS</span><span>JS</span></div>
+        </div>
+      </article>
+
+      <article class="pcard tilt" style="--c:#b06cff">
+        <div class="p-vis v-mob" aria-hidden="true">
+          <div class="phone"><div class="notch"></div><div class="ph-card c1"></div><div class="ph-card c2"></div><div class="ph-card c3"></div><div class="ph-nav"><i></i><i></i><i></i></div></div>
+        </div>
+        <div class="p-body">
+          <span class="p-num">05</span>
+          <h3>Flutter Mobil Uygulama</h3>
+          <p>Dart ve Flutter ile çapraz platform modern mobil uygulamalar ve performanslı UI/UX geliştirme.</p>
+          <div class="tags"><span>Flutter</span><span>Dart</span><span>Mobile</span></div>
+        </div>
+      </article>
+
+      <article class="pcard tilt" style="--c:#ff9a3d">
+        <div class="p-vis v-pi" aria-hidden="true">
+          <div class="board"><div class="chip">RPi</div><i class="led l1"></i><i class="led l2"></i><i class="led l3"></i><div class="pins"></div><div class="trace t1"></div><div class="trace t2"></div><div class="trace t3"></div><div class="servo">⚙️</div></div>
+        </div>
+        <div class="p-body">
+          <span class="p-num">06</span>
+          <h3>Raspberry Pi &amp; Arduino</h3>
+          <p>Sensör entegrasyonu, motor sürücü sistemleri ve gerçek zamanlı gömülü Linux geliştirme.</p>
+          <div class="tags"><span>Raspberry Pi</span><span>Arduino</span><span>Embedded</span></div>
+        </div>
+      </article>
+
+      <a class="pcard p-more tilt" href="https://github.com/ErayHatipoglu" target="_blank" rel="noopener">
+        <span class="more-ico">↗</span>
+        <h3>Daha fazlası<br>GitHub'da</h3>
+        <p class="mono">github.com/ErayHatipoglu</p>
+      </a>
+    </div>
   </div>
 </section>
 
 <!-- EDUCATION -->
-<section id="education">
-  <div>
-    <p class="sec-label">Eğitim</p>
-    <h2 class="sec-h">Akademik<br>Geçmiş</h2>
+<section id="education" class="sec">
+  <div class="sec-head reveal">
+    <p class="sec-label"><span>[04]</span> Eğitim</p>
+    <h2 class="sec-title">Akademik <em>yolculuk</em>.</h2>
   </div>
-  <div class="edu-list">
-    <div class="edu-row">
-      <span class="edu-yr">2025→</span>
-      <div>
-        <div class="edu-school">Doğuş Üniversitesi</div>
-        <div class="edu-field">Bilişim Güvenliği Teknolojisi</div>
-        <div class="edu-desc">2 yıllık ön lisans programı. Siber güvenlik ve bilişim sistemleri odaklı eğitim.</div>
+  <div class="timeline" id="timeline">
+    <div class="tl-line"><span id="tlFill"></span></div>
+    <div class="tl-item reveal">
+      <div class="tl-dot"></div>
+      <div class="card tl-card spot">
+        <span class="tl-yr mono">2025 → Devam ediyor</span>
+        <h3>Doğuş Üniversitesi</h3>
+        <p class="tl-field">Bilişim Güvenliği Teknolojisi</p>
+        <p>2 yıllık ön lisans programı. Siber güvenlik ve bilişim sistemleri odaklı eğitim.</p>
       </div>
     </div>
-    <div class="edu-row">
-      <span class="edu-yr">Mezun</span>
-      <div>
-        <div class="edu-school">Handan Hayrettin Yelkikanat MTAL</div>
-        <div class="edu-field">Bilişim Teknolojileri — Teknik Lise</div>
-        <div class="edu-desc">Mesleki teknik eğitim. Yazılım ve donanım temelli altyapı kazanımı.</div>
+    <div class="tl-item reveal">
+      <div class="tl-dot"></div>
+      <div class="card tl-card spot">
+        <span class="tl-yr mono">Mezun ✓</span>
+        <h3>Handan Hayrettin Yelkikanat MTAL</h3>
+        <p class="tl-field">Bilişim Teknolojileri — Teknik Lise</p>
+        <p>Mesleki teknik eğitim. Yazılım ve donanım temelli altyapı kazanımı.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- INTERESTS -->
-<section id="interests">
-  <p class="int-label">İlgi Alanları</p>
-  <h2 class="int-title">Tutkular & Odak Noktaları</h2>
-  <div class="itags">
-    <span class="itag">Yapay Zeka</span><span class="itag">Robotik</span>
-    <span class="itag">Siber Güvenlik</span><span class="itag">OSINT</span>
-    <span class="itag">Linux</span><span class="itag">Reverse Engineering</span>
-    <span class="itag">Embedded Systems</span><span class="itag">Bilgisayarlı Görü</span>
-    <span class="itag">Otomasyon</span><span class="itag">Donanım Geliştirme</span>
+<section id="interests" class="sec">
+  <div class="sec-head center reveal">
+    <p class="sec-label"><span>[05]</span> İlgi Alanları</p>
+    <h2 class="sec-title">Tutkular &amp; <em>odak noktaları</em>.</h2>
+    <p class="sec-sub">Baloncukları tut, fırlat, oyna. 🫧</p>
+  </div>
+  <div class="playground" id="playground">
+    <span class="bub" data-r="62">🤖<b>Robotik</b></span>
+    <span class="bub" data-r="70">🧠<b>Yapay Zeka</b></span>
+    <span class="bub" data-r="66">🛡️<b>Siber Güvenlik</b></span>
+    <span class="bub" data-r="50">🕵️<b>OSINT</b></span>
+    <span class="bub" data-r="52">🐧<b>Linux</b></span>
+    <span class="bub" data-r="64">🔍<b>Reverse Eng.</b></span>
+    <span class="bub" data-r="60">🔌<b>Embedded</b></span>
+    <span class="bub" data-r="66">👁️<b>Bilgisayarlı Görü</b></span>
+    <span class="bub" data-r="56">⚡<b>Otomasyon</b></span>
+    <span class="bub" data-r="62">🛠️<b>Donanım</b></span>
   </div>
 </section>
 
-<!-- FOOTER: CONTACT + MAP -->
-<div id="footer-block">
+<!-- CONTACT -->
+<section id="contact" class="sec">
+  <div class="sec-head center reveal">
+    <p class="sec-label"><span>[06]</span> İletişim</p>
+    <h2 class="sec-title big">Birlikte harika bir<br><em class="grad">şey inşa edelim.</em></h2>
+  </div>
 
-  <!-- Contact strip -->
-  <div class="footer-contact">
-
-    <!-- Form -->
-    <div class="fc-form">
+  <div class="contact-grid">
+    <form class="card c-form reveal spot" id="waForm" novalidate>
       <h3>Mesaj Gönder</h3>
-      <p>Proje fikrinizi, iş birliği teklifinizi veya sorularınızı buradan iletebilirsiniz.</p>
-      <div class="form-row">
-        <label>Ad Soyad</label>
-        <input id="waName" type="text" placeholder="Adınız Soyadınız">
-      </div>
-      <div class="form-row">
-        <label>E-posta</label>
-        <input id="waEmail" type="email" placeholder="ornek@mail.com">
-      </div>
-      <div class="form-row">
-        <label>Mesaj</label>
-        <textarea id="waMsg" placeholder="Projenizi veya sorunuzu kısaca anlatın..."></textarea>
-      </div>
-      <button class="form-submit" id="waBtn">
-        <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      <p class="muted">Proje fikrin, iş birliği teklifin veya soruların için yaz. Mesajın WhatsApp'ta hazır açılır.</p>
+      <div class="field"><input id="waName" type="text" placeholder=" " autocomplete="name"><label for="waName">Ad Soyad</label></div>
+      <div class="field"><input id="waEmail" type="email" placeholder=" " autocomplete="email"><label for="waEmail">E-posta</label></div>
+      <div class="field"><textarea id="waMsg" placeholder=" " rows="4"></textarea><label for="waMsg">Mesajın</label></div>
+      <button class="btn-wa magnetic" type="submit">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         WhatsApp ile Gönder
       </button>
-      <p class="wa-note">Butona tıklanınca WhatsApp açılır, mesajınız hazır gelir.</p>
-    </div>
+    </form>
 
-    <!-- Info -->
-    <div class="fc-info">
-      <div>
-        <h3>İletişime Geç</h3>
-        <p>Yeni projeler, iş birlikleri veya teknik sorularınız için ulaşabilirsiniz.</p>
-      </div>
-      <div class="ci-item">
-        <div class="ci-icon">📍</div>
-        <div>
-          <div class="ci-label">Konum</div>
-          <div class="ci-val">İstanbul, Türkiye</div>
-        </div>
-      </div>
-      <div class="ci-item">
-        <div class="ci-icon">📞</div>
-        <div>
-          <div class="ci-label">Telefon</div>
-          <div class="ci-val"><a href="tel:+905550612409">0555 061 24 09</a></div>
-        </div>
-      </div>
-      <div class="ci-item">
-        <div class="ci-icon">✉️</div>
-        <div>
-          <div class="ci-label">E-posta</div>
-          <div class="ci-val"><a href="mailto:erayhatipoglu98@gmail.com">erayhatipoglu98@gmail.com</a></div>
-        </div>
-      </div>
-      <div>
-        <div class="ci-label" style="margin-bottom:.8rem">Sosyal Medya</div>
-        <div class="social-row">
-          <a href="https://github.com/ErayHatipoglu" target="_blank" class="social-pill">🐙 GitHub</a>
-          <a href="https://linkedin.com/in/eray-hatipoğlu-8ba690410" target="_blank" class="social-pill">💼 LinkedIn</a>
-        </div>
+    <div class="c-side">
+      <a class="card c-item reveal spot" href="tel:+905550612409"><span class="c-ico">📞</span><span><small>Telefon</small><b>0555 061 24 09</b></span><span class="arrow">↗</span></a>
+      <button class="card c-item copy reveal spot" data-copy="erayhatipoglu98@gmail.com"><span class="c-ico">✉️</span><span><small>E-posta · tıkla kopyala</small><b>erayhatipoglu98@gmail.com</b></span><span class="arrow">⧉</span></button>
+      <a class="card c-item reveal spot" href="https://github.com/ErayHatipoglu" target="_blank" rel="noopener"><span class="c-ico">🐙</span><span><small lang="en">GitHub</small><b>ErayHatipoglu</b></span><span class="arrow">↗</span></a>
+      <a class="card c-item reveal spot" href="https://linkedin.com/in/eray-hatipoğlu-8ba690410" target="_blank" rel="noopener"><span class="c-ico">💼</span><span><small lang="en">LinkedIn</small><b>eray-hatipoğlu</b></span><span class="arrow">↗</span></a>
+      <div class="card c-map reveal">
+        <iframe title="İstanbul haritası" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d192697.74115498895!2d28.872396!3d41.0050948!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14caa7040068086b%3A0xe1ccfe98bc01b0d0!2zSXN0YW5idWwsIFTDvHJraXll!5e0!3m2!1str!2str!4v1700000000000" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <span class="map-tag">📍 İstanbul, Türkiye</span>
       </div>
     </div>
-
   </div>
+</section>
+</main>
 
-  <!-- Map -->
-  <div id="map-section">
-    <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d192697.74115498895!2d28.872396!3d41.0050948!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14caa7040068086b%3A0xe1ccfe98bc01b0d0!2zSXN0YW5idWwsIFTDvHJraXll!5e0!3m2!1str!2str!4v1700000000000"
-      allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-    </iframe>
+<footer class="footer">
+  <div class="big-name" aria-hidden="true">ERAY<span>.</span></div>
+  <div class="foot-bar">
+    <span>© <span id="year">2025</span> Eray Hatipoğlu — İstanbul'da ☕ ve ❤️ ile yapıldı.</span>
+    <span class="mono foot-hint">↑↑↓↓←→←→BA 👀</span>
+    <a href="#hero" class="to-top magnetic" aria-label="Başa dön">↑</a>
   </div>
+</footer>
 
-  <!-- Footer bar -->
-  <div class="footer-bar">
-    <span>© 2025 Eray Hatipoğlu — Tüm hakları saklıdır.</span>
-    <span><a href="mailto:erayhatipoglu98@gmail.com">erayhatipoglu98@gmail.com</a></span>
+<!-- TERMINAL -->
+<div class="term" id="term" role="dialog" aria-label="Terminal" aria-hidden="true">
+  <div class="term-win">
+    <div class="win-bar term-bar"><i id="termClose" title="Kapat"></i><i></i><i></i><span>eray@istanbul: ~</span></div>
+    <div class="term-out" id="termOut"></div>
+    <div class="term-in"><span class="prompt">eray@istanbul:~$</span><input id="termInput" autocomplete="off" spellcheck="false" aria-label="Komut"></div>
   </div>
-
 </div>
 
-<script>
-  // Typewriter — her rolle farklı renk
-  const roles=["Robotics Developer","AI Automation Engineer","Embedded Systems Developer","Full Stack Developer","Computer Vision Developer","Cyber Security Researcher"];
-  const colors=["c0","c1","c2","c3","c4","c0","c1"];
-  let ri=0,ci=0,del=false;
-  const tw=document.getElementById('tw');
-  function applyColor(){tw.className=colors[ri%colors.length];}
-  applyColor();
-  function type(){
-    const cur=roles[ri];
-    tw.textContent=del?cur.slice(0,ci--):cur.slice(0,ci++);
-    let d=del?42:80;
-    if(!del&&ci===cur.length+1){d=1800;del=true;}
-    else if(del&&ci===0){del=false;ri=(ri+1)%roles.length;applyColor();d=350;}
-    setTimeout(type,d);
-  }
-  type();
+<canvas id="fx" aria-hidden="true"></canvas>
+<div class="toast" id="toast" role="status"></div>
 
-  // WhatsApp form — ad + mail + mesaj
-  document.getElementById('waBtn').addEventListener('click',function(){
-    const name  = document.getElementById('waName').value.trim();
-    const email = document.getElementById('waEmail').value.trim();
-    const msg   = document.getElementById('waMsg').value.trim();
-    if(!name && !msg){ alert('Lütfen en az adınızı veya mesajınızı yazın.'); return; }
-    const phone = '905550612409';
-    let text = '';
-    if(name)  text += '*Ad:* ' + name + '\n';
-    if(email) text += '*E-posta:* ' + email + '\n';
-    if(text)  text += '\n';
-    if(msg)   text += '*Mesaj:* ' + msg;
-    window.open('https://wa.me/' + phone + '?text=' + encodeURIComponent(text.trim()), '_blank');
-  });
-
-  // Slider
-  const track=document.getElementById('sliderTrack');
-  const dots=document.querySelectorAll('.s-dot');
-  let idx=0,N=5,tim;
-  const go=n=>{idx=(n+N)%N;track.style.transform=`translateX(-${idx*20}%)`;dots.forEach((d,i)=>d.classList.toggle('on',i===idx));};
-  const rst=()=>{clearInterval(tim);tim=setInterval(()=>go(idx+1),4200);};
-  document.getElementById('sNext').onclick=()=>{go(idx+1);rst();};
-  document.getElementById('sPrev').onclick=()=>{go(idx-1);rst();};
-  dots.forEach(d=>d.addEventListener('click',()=>{go(+d.dataset.i);rst();}));
-  let tx=0;
-  track.addEventListener('touchstart',e=>tx=e.touches[0].clientX);
-  track.addEventListener('touchend',e=>{const dx=tx-e.changedTouches[0].clientX;if(Math.abs(dx)>50){dx>0?go(idx+1):go(idx-1);rst();}});
-  tim=setInterval(()=>go(idx+1),4200);
-
-  // Nav shadow
-  const nav=document.querySelector('nav');
-  window.addEventListener('scroll',()=>nav.style.boxShadow=window.scrollY>30?'0 2px 24px rgba(0,0,0,0.07)':'none');
-</script>
-
+<script src="assets/main.js"></script>
 </body>
 </html>
