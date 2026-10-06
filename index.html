@@ -3,395 +3,347 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Eray Hatipoğlu — Robotik, Yapay Zeka & Yazılım</title>
-  <meta name="description" content="Eray Hatipoğlu — İstanbul'da robotik, yapay zeka destekli otomasyon, gömülü sistemler ve full stack geliştirme üzerine çalışan çok disiplinli geliştirici.">
-  <meta name="theme-color" content="#07070b">
-  <meta property="og:title" content="Eray Hatipoğlu — Developer & Engineer">
+  <title>Eray Hatipoğlu — Teknik Çizim No. EH-001</title>
+  <meta name="description" content="Eray Hatipoğlu — İstanbul'da robotik, yapay zeka destekli otomasyon, gömülü sistemler ve full stack geliştirme üzerine çalışan mühendis.">
+  <meta name="theme-color" content="#f1ede3">
+  <meta property="og:title" content="Eray Hatipoğlu — Teknik Çizim No. EH-001">
   <meta property="og:description" content="Robotik, yapay zeka, gömülü sistemler ve full stack geliştirme.">
-  <meta property="og:type" content="website">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Caveat:wght@500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 
-<!-- BOOT -->
-<div id="boot" aria-hidden="true">
-  <div class="boot-in">
-    <div class="boot-lines" id="bootLines"></div>
-    <div class="boot-bar"><span id="bootBar"></span></div>
-    <div class="boot-pct" id="bootPct">0%</div>
-  </div>
+<!-- drawing frame -->
+<div class="frame" aria-hidden="true">
+  <div class="zones-x"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span></div>
+  <div class="zones-y"><span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span></div>
 </div>
+<div class="xh xh-x" aria-hidden="true"></div>
+<div class="xh xh-y" aria-hidden="true"></div>
+<div class="xh-lbl" aria-hidden="true"></div>
 
-<div class="cursor-dot" aria-hidden="true"></div>
-<div class="cursor-ring" aria-hidden="true"></div>
-<div class="progress" aria-hidden="true"><span id="progress"></span></div>
-<div class="noise" aria-hidden="true"></div>
-
-<!-- NAV -->
-<header class="nav-wrap">
-  <nav class="nav" aria-label="Ana menü">
-    <a href="#hero" class="logo" aria-label="Başa dön">eray<span>.</span>os</a>
-    <ul class="nav-links">
-      <li><a href="#about" data-sec="about">Hakkımda</a></li>
-      <li><a href="#skills" data-sec="skills">Yetenekler</a></li>
-      <li><a href="#projects" data-sec="projects">Projeler</a></li>
-      <li><a href="#education" data-sec="education">Eğitim</a></li>
-      <li><a href="#contact" data-sec="contact">İletişim</a></li>
-      <span class="nav-pill" aria-hidden="true"></span>
-    </ul>
-    <button class="term-btn" id="termOpen" aria-label="Terminali aç" title="Terminali aç ( ` )"><span>&gt;_</span></button>
-    <button class="burger" id="burger" aria-label="Menüyü aç"><i></i><i></i></button>
+<header class="top">
+  <a href="#hero" class="mark" aria-label="Başa dön">E<i>/</i>H</a>
+  <nav class="links" aria-label="Ana menü">
+    <a href="#about"><small>01</small>Hakkımda</a>
+    <a href="#bom"><small>02</small>Yetenekler</a>
+    <a href="#work"><small>03</small>Projeler</a>
+    <a href="#rev"><small>04</small>Eğitim</a>
+    <a href="#order"><small>05</small>İletişim</a>
   </nav>
+  <button class="mode" id="mode" aria-label="Kâğıt ve blueprint görünümü arasında geçiş yap">
+    <span class="m-paper">KÂĞIT</span><span class="m-sw"><i></i></span><span class="m-bp">BLUEPRINT</span>
+  </button>
+  <button class="menu-btn" id="menuBtn" aria-label="Menü">MENÜ</button>
 </header>
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#about">Hakkımda</a><a href="#skills">Yetenekler</a><a href="#projects">Projeler</a><a href="#education">Eğitim</a><a href="#contact">İletişim</a>
+<div class="drawer" id="drawer">
+  <a href="#about"><small>01</small>Hakkımda</a><a href="#bom"><small>02</small>Yetenekler</a><a href="#work"><small>03</small>Projeler</a><a href="#rev"><small>04</small>Eğitim</a><a href="#order"><small>05</small>İletişim</a>
 </div>
 
 <main>
+
 <!-- HERO -->
 <section id="hero">
-  <canvas id="net" aria-hidden="true"></canvas>
-  <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
-  <div class="grid-bg" aria-hidden="true"></div>
+  <canvas id="arm" aria-hidden="true"></canvas>
 
-  <div class="hero-wrap">
-    <div class="hero-inner">
-      <p class="badge reveal"><span class="pulse"></span>Yeni projelere ve iş birliklerine açık</p>
-      <p class="hero-hello reveal">Merhaba, ben <span class="wave">👋</span></p>
-      <h1 class="hero-name" id="heroName" aria-label="Eray Hatipoğlu">Eray Hatipoğlu</h1>
-      <div class="hero-role reveal"><span class="mono">&gt;</span> <span id="scramble">Robotics Developer</span><span class="caret"></span></div>
-      <p class="hero-desc reveal">Robotik sistemler, <em>yapay zeka</em> destekli otomasyon, gömülü yazılım ve full stack geliştirme alanlarında çalışan çok disiplinli bir mühendis. İstanbul'dan, bolca kahveyle. ☕</p>
-      <div class="hero-btns reveal">
-        <a href="#projects" class="btn btn-main magnetic"><span>Projelerimi Gör</span><svg viewBox="0 0 24 24" width="18" height="18"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-        <a href="#contact" class="btn btn-ghost magnetic"><span>İletişime Geç</span></a>
-      </div>
-      <div class="hero-social reveal">
-        <a href="https://github.com/ErayHatipoglu" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.18 1.84 1.18 3.1 0 4.42-2.69 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg></a>
-        <a href="https://linkedin.com/in/eray-hatipoğlu-8ba690410" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg></a>
-        <a href="mailto:erayhatipoglu98@gmail.com" aria-label="E-posta"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="none" stroke="currentColor" stroke-width="2" d="M3 5h18v14H3zM3 6l9 7 9-7"/></svg></a>
-        <span class="hint mono">ipucu: <kbd>`</kbd> tuşuna bas</span>
-      </div>
-    </div>
+  <div class="hero-meta mono">
+    <span>ÇİZİM NO. EH-001</span><span>ÖLÇEK 1:1</span><span id="heroDate">REV B</span>
+  </div>
 
-    <div class="code-card reveal" id="codeCard" aria-hidden="true">
-      <div class="win-bar"><i></i><i></i><i></i><span>eray.py</span></div>
-      <pre class="code"><code id="codeType"></code></pre>
+  <div class="hero-txt">
+    <p class="kicker mono">Robotik &amp; yazılım mühendisi — İstanbul</p>
+    <h1 class="name">
+      <span class="ln"><span>ERAY</span></span>
+      <span class="ln"><span>HATİPOĞLU</span></span>
+    </h1>
+    <div class="dim" aria-hidden="true"><i></i><span class="mono">1 kişi · 5 disiplin</span><i></i></div>
+    <ul class="roles mono" id="roles">
+      <li>Robotik</li><li>Yapay Zeka</li><li>Gömülü Sistemler</li><li>Full Stack</li><li>Siber Güvenlik</li>
+    </ul>
+    <p class="hero-p">Donanımı yazılımla, yazılımı yapay zekayla buluşturuyorum. Raspberry Pi'den web'e, OpenCV'den mobile kadar uçtan uca sistemler kuruyorum.</p>
+    <div class="cta">
+      <a href="#work" class="btn btn-ink">Projeleri incele <span>→</span></a>
+      <a href="#order" class="btn btn-line">İş emri ver</a>
     </div>
   </div>
 
-  <a href="#marquee" class="scroll-ind" aria-label="Aşağı kaydır"><span></span></a>
+  <p class="hand note-arm" aria-hidden="true">beni yakala!<br><span>basılı tut → çizer</span></p>
+  <div class="hero-foot mono" aria-hidden="true">
+    <span>41.0082° K · 28.9784° D</span>
+    <span class="readout" id="readout">θ₁ 0.0° · θ₂ 0.0°</span>
+    <button class="clear" id="clearInk">mürekkebi sil ✕</button>
+  </div>
 </section>
-
-<!-- MARQUEE -->
-<div id="marquee" aria-hidden="true">
-  <div class="mq mq-a"><div class="mq-track">
-    <span>Python</span><b>✦</b><span>C / C++</span><b>✦</b><span>C#</span><b>✦</b><span>Dart</span><b>✦</b><span>Java</span><b>✦</b><span>OpenCV</span><b>✦</b><span>Flutter</span><b>✦</b><span>ASP.NET</span><b>✦</b><span>Raspberry Pi</span><b>✦</b><span>Arduino</span><b>✦</b><span>Linux</span><b>✦</b><span>Unity</span><b>✦</b>
-  </div></div>
-  <div class="mq mq-b"><div class="mq-track">
-    <span>Yapay Zeka</span><b>●</b><span>Robotik</span><b>●</b><span>Siber Güvenlik</span><b>●</b><span>OSINT</span><b>●</b><span>Gömülü Sistemler</span><b>●</b><span>Bilgisayarlı Görü</span><b>●</b><span>Otomasyon</span><b>●</b><span>Reverse Engineering</span><b>●</b>
-  </div></div>
-</div>
 
 <!-- ABOUT -->
 <section id="about" class="sec">
-  <div class="sec-head reveal">
-    <p class="sec-label"><span>[01]</span> Hakkımda</p>
-    <h2 class="sec-title">Yazılım, donanım <br>&amp; <em>yapay zeka</em>.</h2>
-  </div>
+  <header class="sh rv">
+    <span class="sh-n">01</span><h2>Hakkımda</h2><span class="sh-line"></span><span class="sh-note mono">GENEL GÖRÜNÜŞ</span>
+  </header>
 
-  <div class="bento">
-    <article class="card b-intro reveal spot">
-      <div class="avatar" aria-hidden="true"><span>EH</span></div>
-      <p class="lead">Raspberry Pi, Arduino ve Linux tabanlı sistemlerde ileri düzey teknik deneyime sahip, çok yönlü bir geliştiriciyim.</p>
-      <p>Python ile AI destekli içerik üretim altyapıları ve görüntü işleme uygulamaları geliştiriyorum. Full stack web, masaüstü, mobil ve gerçek zamanlı sistemlerde aktif projeler üretiyorum. Farklı disiplinlerde kısa sürede üretken hale gelebiliyorum.</p>
-    </article>
+  <div class="about">
+    <div class="about-l">
+      <p class="big rv">Raspberry Pi, Arduino ve Linux tabanlı sistemlerde ileri düzey deneyime sahip, <mark>çok yönlü</mark> bir geliştiriciyim.</p>
+      <p class="rv">Python ile yapay zeka destekli içerik üretim altyapıları ve görüntü işleme uygulamaları geliştiriyorum. Full stack web, masaüstü, mobil ve gerçek zamanlı sistemlerde aktif projeler üretiyorum. Farklı disiplinlerde kısa sürede üretken hale gelebiliyorum.</p>
+      <p class="hand note-about rv" aria-hidden="true">↙ kahveyle çalışır</p>
+    </div>
 
-    <article class="card b-stats reveal spot">
-      <div class="stat"><strong data-count="6" data-suffix="+">0</strong><span>Programlama dili</span></div>
-      <div class="stat"><strong data-count="24" data-suffix="+">0</strong><span>Teknoloji & araç</span></div>
-      <div class="stat"><strong id="age">0</strong><span>Yaş</span></div>
-      <div class="stat"><strong>∞</strong><span>Merak</span></div>
-    </article>
-
-    <article class="card b-clock reveal spot">
-      <p class="mono small">İstanbul'da saat</p>
-      <div class="clock" id="clock">--:--:--</div>
-      <p class="status"><span class="pulse"></span><span id="doing">Muhtemelen kod yazıyor</span></p>
-    </article>
-
-    <article class="card b-info reveal spot">
-      <ul class="info">
-        <li><span>Konum</span><b>İstanbul, Türkiye</b></li>
-        <li><span>Doğum</span><b>27.07.2007</b></li>
-        <li><span>Telefon</span><b><a href="tel:+905550612409">0555 061 24 09</a></b></li>
-        <li><span>E-posta</span><b><button class="copy" data-copy="erayhatipoglu98@gmail.com" title="Kopyala">erayhatipoglu98@gmail.com</button></b></li>
-        <li><span>Dil</span><b>İngilizce — B2</b></li>
-      </ul>
-    </article>
-
-    <article class="card b-coffee reveal spot">
-      <p class="mono small">Yakıt durumu</p>
-      <button class="coffee-btn" id="coffeeBtn" aria-label="Kahve ısmarla">☕</button>
-      <p><b id="coffeeN">0</b> kahve ısmarlandı. Bir tane de sen ısmarla!</p>
-    </article>
-
-    <article class="card b-now reveal spot">
-      <p class="mono small">Şu an</p>
-      <p class="now">🎓 Doğuş Üniversitesi'nde <b>Bilişim Güvenliği Teknolojisi</b> okuyorum ve robotik + yapay zeka projeleri geliştiriyorum.</p>
-    </article>
+    <dl class="tblock rv">
+      <div><dt>Ad soyad</dt><dd>Eray Hatipoğlu</dd></div>
+      <div><dt>Doğum</dt><dd>27.07.2007</dd></div>
+      <div><dt>Konum</dt><dd>İstanbul, Türkiye</dd></div>
+      <div><dt>Dil</dt><dd>İngilizce — B2</dd></div>
+      <div class="w2"><dt>E-posta</dt><dd><button class="copy" data-copy="erayhatipoglu98@gmail.com">erayhatipoglu98@gmail.com</button></dd></div>
+      <div class="w2"><dt>Telefon</dt><dd><a href="tel:+905550612409">0555 061 24 09</a></dd></div>
+      <div><dt>GitHub</dt><dd><a href="https://github.com/ErayHatipoglu" target="_blank" rel="noopener">ErayHatipoglu ↗</a></dd></div>
+      <div><dt>LinkedIn</dt><dd><a href="https://linkedin.com/in/eray-hatipoğlu-8ba690410" target="_blank" rel="noopener">eray-hatipoğlu ↗</a></dd></div>
+      <div class="w2 clock-row"><dt>İstanbul saati</dt><dd><span id="clock" class="mono">--:--:--</span></dd></div>
+    </dl>
   </div>
 </section>
 
-<!-- SKILLS -->
-<section id="skills" class="sec">
-  <div class="sec-head reveal">
-    <p class="sec-label"><span>[02]</span> Yetenekler</p>
-    <h2 class="sec-title">Teknoloji <em>yığını</em>.</h2>
-    <p class="sec-sub">Küreyi sürükle, çevir, keşfet. 🌐</p>
-  </div>
+<!-- BOM / SKILLS -->
+<section id="bom" class="sec">
+  <header class="sh rv">
+    <span class="sh-n">02</span><h2>Malzeme listesi</h2><span class="sh-line"></span><span class="sh-note mono">TEKNİK YETENEKLER</span>
+  </header>
 
-  <div class="skills-layout">
-    <div class="sphere-wrap reveal">
-      <div class="sphere" id="sphere"></div>
-      <div class="sphere-glow" aria-hidden="true"></div>
-    </div>
-
-    <div class="sk-grid">
-      <article class="card sk reveal spot" style="--c:#8b7bff">
-        <div class="sk-ico">⌨️</div>
-        <h3>Programlama</h3>
-        <ul class="levels">
-          <li><span>Python</span><i style="--v:95%"></i></li>
-          <li><span>C / C++</span><i style="--v:88%"></i></li>
-          <li><span>C#</span><i style="--v:88%"></i></li>
-          <li><span>Dart</span><i style="--v:84%"></i></li>
-          <li><span>Java</span><i style="--v:80%"></i></li>
-          <li><span>HTML5 / CSS3</span><i style="--v:90%"></i></li>
-        </ul>
-      </article>
-      <article class="card sk reveal spot" style="--c:#2ee6a6">
-        <div class="sk-ico">🧠</div>
-        <h3>Framework &amp; AI</h3>
-        <div class="chips"><span>OpenCV</span><span>Flutter</span><span>ASP.NET / MVC</span><span>.NET Framework</span><span>AI Automation</span><span>Local AI Inference</span></div>
-      </article>
-      <article class="card sk reveal spot" style="--c:#ff8a3d">
-        <div class="sk-ico">🤖</div>
-        <h3>Robotik &amp; Gömülü</h3>
-        <div class="chips"><span>Raspberry Pi</span><span>Arduino</span><span>Motor Driver Systems</span><span>Sensor Integration</span><span>Embedded Linux</span><span>Real-Time Control</span></div>
-      </article>
-      <article class="card sk reveal spot" style="--c:#ff4f8b">
-        <div class="sk-ico">🛡️</div>
-        <h3>Güvenlik &amp; Diğer</h3>
-        <div class="chips"><span>OSINT Tools</span><span>Reverse Engineering</span><span>Web Automation</span><span>Linux Ecosystem</span><span>REST API</span><span>Unity</span></div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects">
-  <div class="hs-sticky">
-    <div class="sec-head hs-head">
-      <p class="sec-label"><span>[03]</span> Projeler</p>
-      <h2 class="sec-title">Öne çıkan <em>çalışmalar</em>.</h2>
-      <p class="sec-sub hs-tip">Kaydırmaya devam et →</p>
-    </div>
-    <div class="hs-track" id="hsTrack">
-
-      <article class="pcard tilt" style="--c:#7c6cff">
-        <div class="p-vis v-ai" aria-hidden="true">
-          <svg viewBox="0 0 200 120"><g class="edges"><path d="M30 25L100 20M30 25L100 60M30 25L100 100M30 60L100 20M30 60L100 60M30 60L100 100M30 95L100 20M30 95L100 60M30 95L100 100M100 20L170 40M100 60L170 40M100 100L170 40M100 20L170 80M100 60L170 80M100 100L170 80"/></g><g class="nodes"><circle cx="30" cy="25" r="6"/><circle cx="30" cy="60" r="6"/><circle cx="30" cy="95" r="6"/><circle cx="100" cy="20" r="6"/><circle cx="100" cy="60" r="6"/><circle cx="100" cy="100" r="6"/><circle cx="170" cy="40" r="6"/><circle cx="170" cy="80" r="6"/></g></svg>
-        </div>
-        <div class="p-body">
-          <span class="p-num">01</span>
-          <h3>AI Sosyal Medya Otomasyonu</h3>
-          <p>Python ve lokal AI modelleri ile içerik üretimi, iş akışı yönetimi ve otomatik medya işleme altyapısı.</p>
-          <div class="tags"><span>Python</span><span>Local AI</span><span>Automation</span></div>
-        </div>
-      </article>
-
-      <article class="pcard tilt" style="--c:#2ee6a6">
-        <div class="p-vis v-cv" aria-hidden="true">
-          <div class="cv-scene"><span class="cv-obj o1">🚗</span><span class="cv-obj o2">🐈</span><span class="cv-obj o3">🧍</span>
-            <i class="box b1"><em>car 0.97</em></i><i class="box b2"><em>cat 0.91</em></i><i class="box b3"><em>person 0.99</em></i>
-            <i class="scan"></i></div>
-        </div>
-        <div class="p-body">
-          <span class="p-num">02</span>
-          <h3>Bilgisayarlı Görü &amp; OpenCV</h3>
-          <p>Gerçek zamanlı görüntü işleme, nesne tespiti ve kamera tabanlı otomasyon sistemleri.</p>
-          <div class="tags"><span>Python</span><span>OpenCV</span><span>CV</span></div>
-        </div>
-      </article>
-
-      <article class="pcard tilt" style="--c:#ff4f8b">
-        <div class="p-vis v-net" aria-hidden="true">
-          <div class="win"><div class="win-t"><i></i><i></i><i></i><span>App.exe</span></div>
-            <div class="win-b"><div class="side"><i></i><i></i><i></i><i></i></div><div class="main"><b></b><b></b><b></b><div class="bars"><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
-        </div>
-        <div class="p-body">
-          <span class="p-num">03</span>
-          <h3>Windows &amp; .NET Uygulamaları</h3>
-          <p>ASP.NET, .NET Framework ve C# ile masaüstü uygulamaları ve kapsamlı otomasyon araçları.</p>
-          <div class="tags"><span>C#</span><span>ASP.NET</span><span>.NET</span></div>
-        </div>
-      </article>
-
-      <article class="pcard tilt" style="--c:#22c7ff">
-        <div class="p-vis v-web" aria-hidden="true">
-          <div class="browser"><div class="br-t"><i></i><i></i><i></i><span>https://</span></div>
-            <div class="br-b"><div class="hero-b"></div><div class="row"><i></i><i></i><i></i></div><code>&lt;/&gt;</code></div></div>
-        </div>
-        <div class="p-body">
-          <span class="p-num">04</span>
-          <h3>Full Stack Web Projeleri</h3>
-          <p>Modern arayüzlere sahip yüksek performanslı web siteleri. Uçtan uca geliştirme.</p>
-          <div class="tags"><span>ASP.NET MVC</span><span>HTML/CSS</span><span>JS</span></div>
-        </div>
-      </article>
-
-      <article class="pcard tilt" style="--c:#b06cff">
-        <div class="p-vis v-mob" aria-hidden="true">
-          <div class="phone"><div class="notch"></div><div class="ph-card c1"></div><div class="ph-card c2"></div><div class="ph-card c3"></div><div class="ph-nav"><i></i><i></i><i></i></div></div>
-        </div>
-        <div class="p-body">
-          <span class="p-num">05</span>
-          <h3>Flutter Mobil Uygulama</h3>
-          <p>Dart ve Flutter ile çapraz platform modern mobil uygulamalar ve performanslı UI/UX geliştirme.</p>
-          <div class="tags"><span>Flutter</span><span>Dart</span><span>Mobile</span></div>
-        </div>
-      </article>
-
-      <article class="pcard tilt" style="--c:#ff9a3d">
-        <div class="p-vis v-pi" aria-hidden="true">
-          <div class="board"><div class="chip">RPi</div><i class="led l1"></i><i class="led l2"></i><i class="led l3"></i><div class="pins"></div><div class="trace t1"></div><div class="trace t2"></div><div class="trace t3"></div><div class="servo">⚙️</div></div>
-        </div>
-        <div class="p-body">
-          <span class="p-num">06</span>
-          <h3>Raspberry Pi &amp; Arduino</h3>
-          <p>Sensör entegrasyonu, motor sürücü sistemleri ve gerçek zamanlı gömülü Linux geliştirme.</p>
-          <div class="tags"><span>Raspberry Pi</span><span>Arduino</span><span>Embedded</span></div>
-        </div>
-      </article>
-
-      <a class="pcard p-more tilt" href="https://github.com/ErayHatipoglu" target="_blank" rel="noopener">
-        <span class="more-ico">↗</span>
-        <h3>Daha fazlası<br>GitHub'da</h3>
-        <p class="mono">github.com/ErayHatipoglu</p>
-      </a>
-    </div>
+  <div class="bom">
+    <table class="rv">
+      <caption>A — Programlama</caption>
+      <thead><tr><th>No</th><th>Parça</th><th>Seviye</th></tr></thead>
+      <tbody>
+        <tr><td>A1</td><td>Python</td><td>İleri</td></tr>
+        <tr><td>A2</td><td>C / C++</td><td>İleri</td></tr>
+        <tr><td>A3</td><td>C#</td><td>İleri</td></tr>
+        <tr><td>A4</td><td>Dart</td><td>İleri</td></tr>
+        <tr><td>A5</td><td>Java</td><td>İleri</td></tr>
+        <tr><td>A6</td><td>HTML5 / CSS3</td><td>İleri</td></tr>
+      </tbody>
+    </table>
+    <table class="rv">
+      <caption>B — Framework &amp; AI</caption>
+      <thead><tr><th>No</th><th>Parça</th><th>Tür</th></tr></thead>
+      <tbody>
+        <tr><td>B1</td><td>OpenCV</td><td>Görüntü</td></tr>
+        <tr><td>B2</td><td>Flutter</td><td>Mobil</td></tr>
+        <tr><td>B3</td><td>ASP.NET / MVC</td><td>Web</td></tr>
+        <tr><td>B4</td><td>.NET Framework</td><td>Masaüstü</td></tr>
+        <tr><td>B5</td><td>AI Automation</td><td>Yapay zeka</td></tr>
+        <tr><td>B6</td><td>Local AI Inference</td><td>Yapay zeka</td></tr>
+      </tbody>
+    </table>
+    <table class="rv">
+      <caption>C — Robotik &amp; Gömülü</caption>
+      <thead><tr><th>No</th><th>Parça</th><th>Tür</th></tr></thead>
+      <tbody>
+        <tr><td>C1</td><td>Raspberry Pi</td><td>Donanım</td></tr>
+        <tr><td>C2</td><td>Arduino</td><td>Donanım</td></tr>
+        <tr><td>C3</td><td>Motor Driver Systems</td><td>Kontrol</td></tr>
+        <tr><td>C4</td><td>Sensor Integration</td><td>Kontrol</td></tr>
+        <tr><td>C5</td><td>Embedded Linux</td><td>Sistem</td></tr>
+        <tr><td>C6</td><td>Real-Time Control</td><td>Sistem</td></tr>
+      </tbody>
+    </table>
+    <table class="rv">
+      <caption>D — Güvenlik &amp; Diğer</caption>
+      <thead><tr><th>No</th><th>Parça</th><th>Tür</th></tr></thead>
+      <tbody>
+        <tr><td>D1</td><td>OSINT Tools</td><td>Güvenlik</td></tr>
+        <tr><td>D2</td><td>Reverse Engineering</td><td>Güvenlik</td></tr>
+        <tr><td>D3</td><td>Web Automation</td><td>Otomasyon</td></tr>
+        <tr><td>D4</td><td>Linux Ecosystem</td><td>Sistem</td></tr>
+        <tr><td>D5</td><td>REST API</td><td>Web</td></tr>
+        <tr><td>D6</td><td>Unity</td><td>Oyun / 3B</td></tr>
+      </tbody>
+    </table>
   </div>
 </section>
 
-<!-- EDUCATION -->
-<section id="education" class="sec">
-  <div class="sec-head reveal">
-    <p class="sec-label"><span>[04]</span> Eğitim</p>
-    <h2 class="sec-title">Akademik <em>yolculuk</em>.</h2>
-  </div>
-  <div class="timeline" id="timeline">
-    <div class="tl-line"><span id="tlFill"></span></div>
-    <div class="tl-item reveal">
-      <div class="tl-dot"></div>
-      <div class="card tl-card spot">
-        <span class="tl-yr mono">2025 → Devam ediyor</span>
-        <h3>Doğuş Üniversitesi</h3>
-        <p class="tl-field">Bilişim Güvenliği Teknolojisi</p>
-        <p>2 yıllık ön lisans programı. Siber güvenlik ve bilişim sistemleri odaklı eğitim.</p>
+<!-- WORK -->
+<section id="work" class="sec">
+  <header class="sh rv">
+    <span class="sh-n">03</span><h2>Detay çizimleri</h2><span class="sh-line"></span><span class="sh-note mono">PROJELER</span>
+  </header>
+
+  <div class="sheets">
+    <article class="sheet rv">
+      <div class="sheet-h mono"><span>DETAY A</span><span>Ö 2:1</span></div>
+      <svg class="draw" viewBox="0 0 240 150" aria-hidden="true">
+        <g class="spin-slow">
+          <path d="M40 30L120 20M40 30L120 75M40 30L120 130M40 75L120 20M40 75L120 75M40 75L120 130M40 120L120 20M40 120L120 75M40 120L120 130M120 20L200 50M120 75L200 50M120 130L200 50M120 20L200 100M120 75L200 100M120 130L200 100"/>
+        </g>
+        <circle cx="40" cy="30" r="8"/><circle cx="40" cy="75" r="8"/><circle cx="40" cy="120" r="8"/>
+        <circle cx="120" cy="20" r="8"/><circle cx="120" cy="75" r="8"/><circle cx="120" cy="130" r="8"/>
+        <circle class="acc pulse" cx="200" cy="50" r="8"/><circle class="acc pulse d2" cx="200" cy="100" r="8"/>
+        <path class="thin" d="M40 142H200M40 138v8M200 138v8"/>
+      </svg>
+      <div class="sheet-b">
+        <h3>AI sosyal medya otomasyonu</h3>
+        <p>Python ve lokal AI modelleri ile içerik üretimi, iş akışı yönetimi ve otomatik medya işleme altyapısı.</p>
+        <p class="mat mono">MALZEME: Python · Local AI · Automation</p>
       </div>
-    </div>
-    <div class="tl-item reveal">
-      <div class="tl-dot"></div>
-      <div class="card tl-card spot">
-        <span class="tl-yr mono">Mezun ✓</span>
-        <h3>Handan Hayrettin Yelkikanat MTAL</h3>
-        <p class="tl-field">Bilişim Teknolojileri — Teknik Lise</p>
-        <p>Mesleki teknik eğitim. Yazılım ve donanım temelli altyapı kazanımı.</p>
+    </article>
+
+    <article class="sheet rv">
+      <div class="sheet-h mono"><span>DETAY B</span><span>Ö 1:2</span></div>
+      <svg class="draw" viewBox="0 0 240 150" aria-hidden="true">
+        <rect x="14" y="58" width="44" height="34" rx="4"/><circle cx="66" cy="75" r="10"/><path d="M24 58v-8h16v8"/>
+        <path class="thin dash" d="M76 70L222 18M76 80L222 138"/>
+        <rect class="acc scan-box" x="150" y="50" width="44" height="66"/>
+        <circle cx="172" cy="66" r="8"/><path d="M172 74v24M160 84h24M172 98l-8 14M172 98l8 14"/>
+        <path class="thin" d="M150 44v-6h12M194 44v-6h-12"/>
+      </svg>
+      <div class="sheet-b">
+        <h3>Bilgisayarlı görü &amp; OpenCV</h3>
+        <p>Gerçek zamanlı görüntü işleme, nesne tespiti ve kamera tabanlı otomasyon sistemleri.</p>
+        <p class="mat mono">MALZEME: Python · OpenCV · CV</p>
       </div>
+    </article>
+
+    <article class="sheet rv">
+      <div class="sheet-h mono"><span>DETAY C</span><span>Ö 1:1</span></div>
+      <svg class="draw" viewBox="0 0 240 150" aria-hidden="true">
+        <rect x="24" y="16" width="192" height="118" rx="4"/><path d="M24 32h192"/><circle cx="34" cy="24" r="3"/><circle cx="44" cy="24" r="3"/><circle cx="54" cy="24" r="3"/>
+        <path d="M70 32v102M34 46h26M34 58h20M34 70h24"/>
+        <path d="M84 120V96M100 120V80M116 120V104M132 120V70M148 120V90"/>
+        <g class="gear spin"><circle cx="186" cy="66" r="14"/><circle cx="186" cy="66" r="5"/><path d="M186 46v6M186 80v6M166 66h6M200 66h6M172 52l4 4M196 76l4 4M200 52l-4 4M172 80l4-4"/></g>
+      </svg>
+      <div class="sheet-b">
+        <h3>Windows &amp; .NET uygulamaları</h3>
+        <p>ASP.NET, .NET Framework ve C# ile masaüstü uygulamaları ve kapsamlı otomasyon araçları.</p>
+        <p class="mat mono">MALZEME: C# · ASP.NET · .NET</p>
+      </div>
+    </article>
+
+    <article class="sheet rv">
+      <div class="sheet-h mono"><span>DETAY D</span><span>Ö 1:1</span></div>
+      <svg class="draw" viewBox="0 0 240 150" aria-hidden="true">
+        <rect x="20" y="14" width="200" height="122" rx="6"/><path d="M20 32h200"/><rect x="60" y="19" width="120" height="8" rx="4"/>
+        <rect x="34" y="44" width="172" height="34"/><path d="M34 90h50v32H34zM95 90h50v32H95zM156 90h50v32h-50z"/>
+        <path class="acc" d="M104 54l-10 7 10 7M136 54l10 7-10 7M124 50l-8 22"/>
+      </svg>
+      <div class="sheet-b">
+        <h3>Full stack web projeleri</h3>
+        <p>Modern arayüzlere sahip yüksek performanslı web siteleri. Uçtan uca geliştirme.</p>
+        <p class="mat mono">MALZEME: ASP.NET MVC · HTML/CSS · JS</p>
+      </div>
+    </article>
+
+    <article class="sheet rv">
+      <div class="sheet-h mono"><span>DETAY E</span><span>Ö 1:1</span></div>
+      <svg class="draw" viewBox="0 0 240 150" aria-hidden="true">
+        <rect x="88" y="8" width="64" height="134" rx="12"/><path d="M110 16h20"/>
+        <rect class="acc" x="96" y="28" width="48" height="30" rx="4"/>
+        <rect x="96" y="64" width="48" height="16" rx="3"/><rect x="96" y="86" width="48" height="16" rx="3"/>
+        <path d="M100 128h8M116 128h8M132 128h8"/>
+        <path class="thin" d="M76 8v134M72 8h8M72 142h8M164 8h8M164 142h8"/>
+        <path class="thin" d="M168 8v134"/>
+      </svg>
+      <div class="sheet-b">
+        <h3>Flutter mobil uygulama</h3>
+        <p>Dart ve Flutter ile çapraz platform modern mobil uygulamalar ve performanslı UI/UX geliştirme.</p>
+        <p class="mat mono">MALZEME: Flutter · Dart · Mobile</p>
+      </div>
+    </article>
+
+    <article class="sheet rv">
+      <div class="sheet-h mono"><span>DETAY F</span><span>Ö 3:1</span></div>
+      <svg class="draw" viewBox="0 0 240 150" aria-hidden="true">
+        <rect x="16" y="20" width="150" height="110" rx="6"/>
+        <path d="M26 30h130M26 36h130"/><rect x="66" y="58" width="44" height="44"/><path d="M60 66h6M60 74h6M60 82h6M60 90h6M110 66h6M110 74h6M110 82h6M110 90h6"/>
+        <circle class="acc blink" cx="34" cy="116" r="4"/><circle class="blink d2" cx="48" cy="116" r="4"/>
+        <path d="M110 80h24v-20h20M88 102v18h40"/>
+        <g class="gear spin"><circle cx="200" cy="76" r="20"/><circle cx="200" cy="76" r="6"/><path d="M200 50v6M200 96v6M174 76h6M220 76h6M182 58l4 4M214 90l4 4M218 58l-4 4M182 94l4-4"/></g>
+        <path class="thin dash" d="M154 80h26"/>
+      </svg>
+      <div class="sheet-b">
+        <h3>Raspberry Pi &amp; Arduino</h3>
+        <p>Sensör entegrasyonu, motor sürücü sistemleri ve gerçek zamanlı gömülü Linux geliştirme.</p>
+        <p class="mat mono">MALZEME: Raspberry Pi · Arduino · Embedded</p>
+      </div>
+    </article>
+  </div>
+  <a class="more mono rv" href="https://github.com/ErayHatipoglu" target="_blank" rel="noopener">Tüm çizimler arşivde → github.com/ErayHatipoglu</a>
+</section>
+
+<!-- REVISIONS / EDUCATION -->
+<section id="rev" class="sec">
+  <header class="sh rv">
+    <span class="sh-n">04</span><h2>Revizyon geçmişi</h2><span class="sh-line"></span><span class="sh-note mono">EĞİTİM</span>
+  </header>
+  <div class="revs">
+    <div class="rev-row rv">
+      <span class="rev-id">B</span>
+      <span class="rev-date mono">2025 →</span>
+      <div><h3>Doğuş Üniversitesi</h3><p>Bilişim Güvenliği Teknolojisi — 2 yıllık ön lisans. Siber güvenlik ve bilişim sistemleri odaklı eğitim.</p></div>
+      <span class="rev-st mono live">Devam ediyor</span>
+    </div>
+    <div class="rev-row rv">
+      <span class="rev-id">A</span>
+      <span class="rev-date mono">Mezun</span>
+      <div><h3>Handan Hayrettin Yelkikanat MTAL</h3><p>Bilişim Teknolojileri — Teknik lise. Yazılım ve donanım temelli altyapı kazanımı.</p></div>
+      <span class="rev-st mono">Onaylandı</span>
     </div>
   </div>
-</section>
 
-<!-- INTERESTS -->
-<section id="interests" class="sec">
-  <div class="sec-head center reveal">
-    <p class="sec-label"><span>[05]</span> İlgi Alanları</p>
-    <h2 class="sec-title">Tutkular &amp; <em>odak noktaları</em>.</h2>
-    <p class="sec-sub">Baloncukları tut, fırlat, oyna. 🫧</p>
-  </div>
-  <div class="playground" id="playground">
-    <span class="bub" data-r="62">🤖<b>Robotik</b></span>
-    <span class="bub" data-r="70">🧠<b>Yapay Zeka</b></span>
-    <span class="bub" data-r="66">🛡️<b>Siber Güvenlik</b></span>
-    <span class="bub" data-r="50">🕵️<b>OSINT</b></span>
-    <span class="bub" data-r="52">🐧<b>Linux</b></span>
-    <span class="bub" data-r="64">🔍<b>Reverse Eng.</b></span>
-    <span class="bub" data-r="60">🔌<b>Embedded</b></span>
-    <span class="bub" data-r="66">👁️<b>Bilgisayarlı Görü</b></span>
-    <span class="bub" data-r="56">⚡<b>Otomasyon</b></span>
-    <span class="bub" data-r="62">🛠️<b>Donanım</b></span>
+  <div class="interests rv">
+    <p class="mono lbl">NOTLAR — İLGİ ALANLARI</p>
+    <ul>
+      <li><b>1</b>Yapay zeka</li><li><b>2</b>Robotik</li><li><b>3</b>Siber güvenlik</li><li><b>4</b>OSINT</li><li><b>5</b>Linux</li>
+      <li><b>6</b>Reverse engineering</li><li><b>7</b>Gömülü sistemler</li><li><b>8</b>Bilgisayarlı görü</li><li><b>9</b>Otomasyon</li><li><b>10</b>Donanım geliştirme</li>
+    </ul>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact" class="sec">
-  <div class="sec-head center reveal">
-    <p class="sec-label"><span>[06]</span> İletişim</p>
-    <h2 class="sec-title big">Birlikte harika bir<br><em class="grad">şey inşa edelim.</em></h2>
-  </div>
+<!-- ORDER / CONTACT -->
+<section id="order" class="sec">
+  <header class="sh rv">
+    <span class="sh-n">05</span><h2>İş emri</h2><span class="sh-line"></span><span class="sh-note mono">İLETİŞİM</span>
+  </header>
 
-  <div class="contact-grid">
-    <form class="card c-form reveal spot" id="waForm" novalidate>
-      <h3>Mesaj Gönder</h3>
-      <p class="muted">Proje fikrin, iş birliği teklifin veya soruların için yaz. Mesajın WhatsApp'ta hazır açılır.</p>
-      <div class="field"><input id="waName" type="text" placeholder=" " autocomplete="name"><label for="waName">Ad Soyad</label></div>
-      <div class="field"><input id="waEmail" type="email" placeholder=" " autocomplete="email"><label for="waEmail">E-posta</label></div>
-      <div class="field"><textarea id="waMsg" placeholder=" " rows="4"></textarea><label for="waMsg">Mesajın</label></div>
-      <button class="btn-wa magnetic" type="submit">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        WhatsApp ile Gönder
-      </button>
+  <div class="order">
+    <form class="wo rv" id="wo" novalidate>
+      <div class="wo-h mono"><span>İŞ EMRİ NO. <b id="woNo">EH-0000</b></span><span id="woDate">--.--.----</span></div>
+      <label class="f"><span class="mono">01 · Ad soyad</span><input id="waName" type="text" autocomplete="name" placeholder="Adın"></label>
+      <label class="f"><span class="mono">02 · E-posta</span><input id="waEmail" type="email" autocomplete="email" placeholder="ornek@mail.com"></label>
+      <label class="f"><span class="mono">03 · Açıklama</span><textarea id="waMsg" rows="4" placeholder="Projeni veya sorunu kısaca anlat…"></textarea></label>
+      <button class="btn btn-ink send" type="submit">Onayla &amp; WhatsApp'tan gönder <span>→</span></button>
+      <div class="stamp" id="stamp" aria-hidden="true"><span>ONAYLANDI</span><small id="stampDate"></small></div>
     </form>
 
-    <div class="c-side">
-      <a class="card c-item reveal spot" href="tel:+905550612409"><span class="c-ico">📞</span><span><small>Telefon</small><b>0555 061 24 09</b></span><span class="arrow">↗</span></a>
-      <button class="card c-item copy reveal spot" data-copy="erayhatipoglu98@gmail.com"><span class="c-ico">✉️</span><span><small>E-posta · tıkla kopyala</small><b>erayhatipoglu98@gmail.com</b></span><span class="arrow">⧉</span></button>
-      <a class="card c-item reveal spot" href="https://github.com/ErayHatipoglu" target="_blank" rel="noopener"><span class="c-ico">🐙</span><span><small lang="en">GitHub</small><b>ErayHatipoglu</b></span><span class="arrow">↗</span></a>
-      <a class="card c-item reveal spot" href="https://linkedin.com/in/eray-hatipoğlu-8ba690410" target="_blank" rel="noopener"><span class="c-ico">💼</span><span><small lang="en">LinkedIn</small><b>eray-hatipoğlu</b></span><span class="arrow">↗</span></a>
-      <div class="card c-map reveal">
+    <div class="direct">
+      <a class="d-row rv" href="tel:+905550612409"><span class="mono">TEL</span><b>0555 061 24 09</b><i>↗</i></a>
+      <button class="d-row rv copy" data-copy="erayhatipoglu98@gmail.com"><span class="mono">E-POSTA</span><b>erayhatipoglu98@gmail.com</b><i>kopyala</i></button>
+      <a class="d-row rv" href="https://github.com/ErayHatipoglu" target="_blank" rel="noopener"><span class="mono">GITHUB</span><b>ErayHatipoglu</b><i>↗</i></a>
+      <a class="d-row rv" href="https://linkedin.com/in/eray-hatipoğlu-8ba690410" target="_blank" rel="noopener"><span class="mono">LINKEDIN</span><b>eray-hatipoğlu</b><i>↗</i></a>
+      <div class="map rv">
         <iframe title="İstanbul haritası" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d192697.74115498895!2d28.872396!3d41.0050948!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14caa7040068086b%3A0xe1ccfe98bc01b0d0!2zSXN0YW5idWwsIFTDvHJraXll!5e0!3m2!1str!2str!4v1700000000000" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        <span class="map-tag">📍 İstanbul, Türkiye</span>
+        <span class="map-pin mono">⌖ İSTANBUL</span>
       </div>
     </div>
   </div>
 </section>
 </main>
 
-<footer class="footer">
-  <div class="big-name" aria-hidden="true">ERAY<span>.</span></div>
-  <div class="foot-bar">
-    <span>© <span id="year">2025</span> Eray Hatipoğlu — İstanbul'da ☕ ve ❤️ ile yapıldı.</span>
-    <span class="mono foot-hint">↑↑↓↓←→←→BA 👀</span>
-    <a href="#hero" class="to-top magnetic" aria-label="Başa dön">↑</a>
+<footer class="tb">
+  <div class="tb-grid">
+    <div class="tb-sign"><span class="mono">ÇİZEN</span><p class="sig">Eray Hatipoğlu</p></div>
+    <div><span class="mono">PROJE</span><b>Kişisel portfolyo</b></div>
+    <div><span class="mono">ÇİZİM NO.</span><b>EH-001</b></div>
+    <div><span class="mono">TARİH</span><b id="tbDate">—</b></div>
+    <div><span class="mono">ÖLÇEK</span><b>1:1</b></div>
+    <div><span class="mono">SAYFA</span><b>1 / 1</b></div>
+    <div><span class="mono">REV</span><b>B</b></div>
+    <div class="tb-c"><span class="mono">©</span><b><span id="year">2025</span> · Tüm hakları saklıdır</b></div>
+    <a href="#hero" class="tb-up"><span class="mono">BAŞA DÖN</span><b>↑</b></a>
   </div>
 </footer>
 
-<!-- TERMINAL -->
-<div class="term" id="term" role="dialog" aria-label="Terminal" aria-hidden="true">
-  <div class="term-win">
-    <div class="win-bar term-bar"><i id="termClose" title="Kapat"></i><i></i><i></i><span>eray@istanbul: ~</span></div>
-    <div class="term-out" id="termOut"></div>
-    <div class="term-in"><span class="prompt">eray@istanbul:~$</span><input id="termInput" autocomplete="off" spellcheck="false" aria-label="Komut"></div>
-  </div>
-</div>
-
-<canvas id="fx" aria-hidden="true"></canvas>
-<div class="toast" id="toast" role="status"></div>
-
+<div class="toast mono" id="toast" role="status"></div>
 <script src="assets/main.js"></script>
 </body>
 </html>
